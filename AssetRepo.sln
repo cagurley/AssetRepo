@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetRepo", "AssetRepo\AssetRepo.csproj", "{72F76351-9EA4-472C-BAED-AEDA88B43ED1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{678DE0B4-5939-4A2A-BE66-AC44AD1BFC3E}"
+	ProjectSection(SolutionItems) = preProject
+		C#ProjectBrainstorm.md = C#ProjectBrainstorm.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72F76351-9EA4-472C-BAED-AEDA88B43ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F76351-9EA4-472C-BAED-AEDA88B43ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F76351-9EA4-472C-BAED-AEDA88B43ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F76351-9EA4-472C-BAED-AEDA88B43ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B1F432D-6834-4D73-BE2A-BDE3B70FB7A8}
+	EndGlobalSection
+EndGlobal
