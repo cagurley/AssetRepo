@@ -117,10 +117,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AssetRepoContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Asset.cs" />
+    <Compile Include="Models\AssetSubtype.cs" />
+    <Compile Include="Models\AssetType.cs" />
     <Compile Include="Models\Contributor.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
