@@ -105,6 +105,8 @@
     </Content>
     <Content Include="Views\Asset\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Asset\AddEditAsset.cshtml" />
+    <Content Include="Views\Asset\AssetDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

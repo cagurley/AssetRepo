@@ -1,0 +1,47 @@
+﻿@model AssetRepo.Models.AssetViewModel
+@{
+    var isEditMode = Model.AssetId != null;
+    ViewBag.Title = isEditMode ? "Edit " + Model.Title : "Add Asset";
+}
+
+<h2>@Model.Title</h2>
+
+<div class="row">
+    <div class="col-sm-6 col-xs-10">
+        @using (Html.BeginForm(isEditMode ? "EditAsset" : "AddAsset", "Asset"))
+        {
+            @Html.HiddenFor(m => m.AssetId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title)
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Type_AssetTypeId">Type</label>
+                @Html.DropDownListFor(m => m.Type.AssetTypeId, ViewBag.AssetTypes as IEnumerable<SelectListItem>, "Select an asset type...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Type.AssetTypeId, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Subtype_AssetSubtypeId">Subtype</label>
+                @Html.DropDownListFor(m => m.Subtype.AssetSubtypeId, ViewBag.AssetSubtypes as IEnumerable<SelectListItem>, "Select an asset subtype...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Subtype.AssetSubtypeId, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Contributor_ContributorId">Contributor</label>
+                @Html.DropDownListFor(m => m.Contributor.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the contributor...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Contributor.ContributorId, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastUpdateDateTime)
+                @Html.TextBoxFor(m => m.LastUpdateDateTime, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Comment)
+                @Html.TextBoxFor(m => m.Comment, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })
+            @Html.ValidationSummary(null, new { @class = "alert-danger", style = "margin-top: 15px; padding: 10px 0;" });
+        }
+    </div>
+</div>

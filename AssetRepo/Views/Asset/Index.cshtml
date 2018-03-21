@@ -19,31 +19,33 @@
             <tr>
                 <td>@Model.Assets[i].Title</td>
                 <td>
-                    @*@Html.ActionLink("Detail", "PersonDetail", new { id = Model.People[i].PersonId })
-                    | @Html.ActionLink("Edit", "PersonEdit", new { id = Model.People[i].PersonId })
-                    | @Html.ActionLink("Food Preferences", "ManageFoodPreferences", new { id = Model.People[i].PersonId })
-                    | <a data-toggle="modal" href="@("#deletePersonModal" + i)">Delete</a>
-                    <div class="modal fade" id="@("deletePersonModal" + i)" tabindex="-1" role="dialog">
+                    @Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId })
+                    | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId })
+                    @*| @Html.ActionLink("Food Preferences", "ManageFoodPreferences", new { id = Model.People[i].PersonId })*@
+                    | <a data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
+                    <div class="modal fade" id="@("deleteAssetModal" + i)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                @using (Html.BeginForm("DeletePerson", "Person"))
+                                @using (Html.BeginForm("DeleteAsset", "Asset"))
                                 {
-                                    <input type="hidden" value="@Model.People[i].PersonId" name="PersonId" />
+                                    <input type="hidden" value="@Model.Assets[i].AssetId" name="AssetId" />
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Delete @Model.People[i].FullName</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Delete @Model.Assets[i].Title</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete @Model.People[i].FullName?
+                                        Are you sure you want to delete @Model.Assets[i].Title?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Yes</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-dark">Yes</button>
+                                        <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Cancel</button>
                                     </div>
                                 }
                             </div>
                         </div>
-                    </div>*@
+                    </div>
                 </td>
             </tr>
         }
@@ -54,5 +56,5 @@
     <label>Total Assets:</label> @Model.TotalAssets
 </div>
 <div class="col-sm-12">
-    @*@Html.ActionLink("Add Person", "PersonAdd", null, new { @class = "btn btn-primary" })*@
+    @Html.ActionLink("Add Asset", "AssetAdd", null, new { @class = "btn btn-dark" })
 </div>

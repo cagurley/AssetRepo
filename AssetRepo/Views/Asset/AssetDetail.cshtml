@@ -1,0 +1,36 @@
+﻿@model AssetRepo.Models.AssetViewModel
+@{
+    ViewBag.Title = "Asset Detail";
+}
+
+<h2>@Model.Title</h2>
+
+<div class="row">
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Title)
+        <br>@Html.DisplayFor(m => m.Title)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Type)
+        <br>@Html.DisplayFor(m => m.Type.Name)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Subtype)
+        <br>@Html.DisplayFor(m => m.Subtype.Name)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Contributor)
+        <br>@Html.DisplayFor(m => m.Contributor.Name)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.LastUpdateDateTime)
+        <br>@Html.DisplayFor(m => m.LastUpdateDateTime)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Comment)
+        <br>@Html.DisplayFor(m => m.Comment)
+    </div>
+    <div class="col-sm-12">
+        @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-dark" })
+    </div>
+</div>
