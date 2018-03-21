@@ -6,9 +6,10 @@ using System.Web;
 
 namespace AssetRepo.Models
 {
-    public class AssetType
+    public class ContributorViewModel
     {
-        public int AssetTypeId { get; set; }
+        public int? ContributorId { get; set; }
+
         [Required]
         public string Name { get; set; }
     }

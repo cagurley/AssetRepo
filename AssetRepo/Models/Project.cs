@@ -12,8 +12,8 @@ namespace AssetRepo.Models
         [Required]
         public string Title { get; set; }
         public string Category { get; set; }
-        public string CreatorId { get; set; }
-        public string AssetId { get; set; }
+        public int CreatorId { get; set; }
+        public int LastContributionId { get; set; }
         public DateTime LastContributionDateTime { get; set; }
 
         public virtual Contributor Creator { get; set; }

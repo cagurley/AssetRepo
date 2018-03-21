@@ -103,6 +103,8 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Asset\Index.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -117,16 +119,25 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AssetRepoContext.cs" />
+    <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Asset.cs" />
+    <Compile Include="Models\AssetListViewModel.cs" />
     <Compile Include="Models\AssetSubtype.cs" />
+    <Compile Include="Models\AssetSubtypeViewModel.cs" />
     <Compile Include="Models\AssetType.cs" />
+    <Compile Include="Models\AssetTypeViewModel.cs" />
+    <Compile Include="Models\AssetViewModel.cs" />
     <Compile Include="Models\Contributor.cs" />
+    <Compile Include="Models\ContributorViewModel.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectListViewModel.cs" />
+    <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
