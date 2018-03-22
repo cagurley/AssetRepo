@@ -27,18 +27,27 @@ namespace AssetRepo.Controllers
                     Assets = assetRepoContext.Assets.Select(a => new AssetViewModel
                     {
                         AssetId = a.AssetId,
+                        Project = new ProjectViewModel
+                        {
+                            ProjectId = a.ProjectId
+                        },
                         Title = a.Title,
                         Type = new AssetTypeViewModel
                         {
-                            AssetTypeId = a.TypeId
+                            AssetTypeId = a.AssetTypeId
                         },
                         Subtype = new AssetSubtypeViewModel
                         {
-                            AssetSubtypeId = a.SubtypeId
+                            AssetSubtypeId = a.AssetSubtypeId
                         },
-                        Contributor = new ContributorViewModel
+                        Creator = new ContributorViewModel
                         {
-                            ContributorId = a.ContributorId
+                            ContributorId = a.CreatorId
+                        },
+                        CreationDateTime = a.CreationDateTime,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = a.LastUpdaterId
                         },
                         LastUpdateDateTime = a.LastUpdateDateTime,
                         Comment = a.Comment
@@ -62,17 +71,26 @@ namespace AssetRepo.Controllers
                     {
                         AssetId = asset.AssetId,
                         Title = asset.Title,
+                        Project = new ProjectViewModel
+                        {
+                            ProjectId = asset.ProjectId
+                        },
                         Type = new AssetTypeViewModel
                         {
-                            AssetTypeId = asset.TypeId
+                            AssetTypeId = asset.AssetTypeId
                         },
                         Subtype = new AssetSubtypeViewModel
                         {
-                            AssetSubtypeId = asset.SubtypeId
+                            AssetSubtypeId = asset.AssetSubtypeId
                         },
-                        Contributor = new ContributorViewModel
+                        Creator = new ContributorViewModel
                         {
-                            ContributorId = asset.ContributorId
+                            ContributorId = asset.CreatorId
+                        },
+                        CreationDateTime = asset.CreationDateTime,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = asset.LastUpdaterId
                         },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
                         Comment = asset.Comment
@@ -89,6 +107,12 @@ namespace AssetRepo.Controllers
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
+                ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                {
+                    Value = p.ProjectId.ToString(),
+                    Text = p.Title
+                }).ToList();
+
                 ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
                 {
                     Value = at.AssetTypeId.ToString(),
@@ -120,6 +144,12 @@ namespace AssetRepo.Controllers
             {
                 using (var assetRepoContext = new AssetRepoContext())
                 {
+                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                    {
+                        Value = p.ProjectId.ToString(),
+                        Text = p.Title
+                    }).ToList();
+
                     ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
                     {
                         Value = at.AssetTypeId.ToString(),
@@ -147,9 +177,12 @@ namespace AssetRepo.Controllers
                 var asset = new Asset
                 {
                     Title = assetViewModel.Title,
-                    TypeId = assetViewModel.Type.AssetTypeId.Value,
-                    SubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value,
-                    ContributorId = assetViewModel.Contributor.ContributorId.Value,
+                    ProjectId = assetViewModel.Project.ProjectId.Value,
+                    AssetTypeId = assetViewModel.Type.AssetTypeId.Value,
+                    AssetSubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value,
+                    CreatorId = assetViewModel.Creator.ContributorId.Value,
+                    CreationDateTime = assetViewModel.CreationDateTime,
+                    LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value,
                     LastUpdateDateTime = assetViewModel.LastUpdateDateTime,
                     Comment = assetViewModel.Comment
                 };
@@ -165,6 +198,12 @@ namespace AssetRepo.Controllers
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
+                ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                {
+                    Value = p.ProjectId.ToString(),
+                    Text = p.Title
+                }).ToList();
+
                 ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
                 {
                     Value = at.AssetTypeId.ToString(),
@@ -190,20 +229,31 @@ namespace AssetRepo.Controllers
                     {
                         AssetId = asset.AssetId,
                         Title = asset.Title,
+                        Project = new ProjectViewModel
+                        {
+                            ProjectId = asset.ProjectId,
+                            Title = asset.Project.Title
+                        },
                         Type = new AssetTypeViewModel
                         {
-                            AssetTypeId = asset.TypeId,
+                            AssetTypeId = asset.AssetTypeId,
                             Name = asset.Type.Name
                         },
                         Subtype = new AssetSubtypeViewModel
                         {
-                            AssetSubtypeId = asset.SubtypeId,
+                            AssetSubtypeId = asset.AssetSubtypeId,
                             Name = asset.Subtype.Name
                         },
-                        Contributor = new ContributorViewModel
+                        Creator = new ContributorViewModel
                         {
-                            ContributorId = asset.ContributorId,
-                            Name = asset.Contributor.Name
+                            ContributorId = asset.CreatorId,
+                            Name = asset.Creator.Name
+                        },
+                        CreationDateTime = asset.CreationDateTime,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = asset.LastUpdaterId,
+                            Name = asset.LastUpdater.Name
                         },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
                         Comment = asset.Comment
@@ -223,6 +273,12 @@ namespace AssetRepo.Controllers
             {
                 using (var assetRepoContext = new AssetRepoContext())
                 {
+                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                    {
+                        Value = p.ProjectId.ToString(),
+                        Text = p.Title
+                    }).ToList();
+
                     ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
                     {
                         Value = at.AssetTypeId.ToString(),
@@ -252,9 +308,12 @@ namespace AssetRepo.Controllers
                 if (asset != null)
                 {
                     asset.Title = assetViewModel.Title;
-                    asset.TypeId = assetViewModel.Type.AssetTypeId.Value;
-                    asset.SubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value;
-                    asset.ContributorId = assetViewModel.Contributor.ContributorId.Value;
+                    asset.ProjectId = assetViewModel.Project.ProjectId.Value;
+                    asset.AssetTypeId = assetViewModel.Type.AssetTypeId.Value;
+                    asset.AssetSubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value;
+                    asset.CreatorId = assetViewModel.Creator.ContributorId.Value;
+                    asset.CreationDateTime = assetViewModel.CreationDateTime;
+                    asset.LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value;
                     asset.LastUpdateDateTime = assetViewModel.LastUpdateDateTime;
                     asset.Comment = assetViewModel.Comment;
                     assetRepoContext.SaveChanges();

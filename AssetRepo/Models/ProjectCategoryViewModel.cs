@@ -7,11 +7,11 @@ using System.Web;
 
 namespace AssetRepo.Models
 {
-    public class AssetTypeViewModel
+    public class ProjectCategoryViewModel
     {
-        public int? AssetTypeId { get; set; }
+        public int? ProjectCategoryId { get; set; }
 
-        [Required(ErrorMessage = "Type is required."), DisplayName("Type")]
+        [Required(ErrorMessage = "Category is required."), DisplayName("Category")]
         public string Name { get; set; }
     }
 }

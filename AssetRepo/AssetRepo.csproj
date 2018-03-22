@@ -107,6 +107,7 @@
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Asset\AddEditAsset.cshtml" />
     <Content Include="Views\Asset\AssetDetail.cshtml" />
+    <Content Include="Views\Contributor\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -122,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AssetRepoContext.cs" />
     <Compile Include="Controllers\AssetController.cs" />
+    <Compile Include="Controllers\ContributorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -136,8 +138,11 @@
     <Compile Include="Models\AssetTypeViewModel.cs" />
     <Compile Include="Models\AssetViewModel.cs" />
     <Compile Include="Models\Contributor.cs" />
+    <Compile Include="Models\ContributorListViewModel.cs" />
     <Compile Include="Models\ContributorViewModel.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectCategory.cs" />
+    <Compile Include="Models\ProjectCategoryViewModel.cs" />
     <Compile Include="Models\ProjectListViewModel.cs" />
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

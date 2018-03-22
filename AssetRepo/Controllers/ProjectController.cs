@@ -21,11 +21,15 @@ namespace AssetRepo.Controllers
                     {
                         ProjectId = p.ProjectId,
                         Title = p.Title,
-                        Category = p.Category,
+                        Category = new ProjectCategoryViewModel
+                        {
+                            ProjectCategoryId = p.ProjectCategoryId
+                        },
                         Creator = new ContributorViewModel
                         {
                             ContributorId = p.CreatorId
                         },
+                        CreationDateTime = p.CreationDateTime,
                         LastContribution = new AssetViewModel
                         {
                             AssetId = p.LastContributionId

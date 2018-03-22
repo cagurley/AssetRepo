@@ -11,6 +11,10 @@
         <br>@Html.DisplayFor(m => m.Title)
     </div>
     <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Project)
+        <br>@Html.DisplayFor(m => m.Project.Title)
+    </div>
+    <div class="col-sm-12 form-group">
         @Html.LabelFor(m => m.Type)
         <br>@Html.DisplayFor(m => m.Type.Name)
     </div>
@@ -19,8 +23,16 @@
         <br>@Html.DisplayFor(m => m.Subtype.Name)
     </div>
     <div class="col-sm-12 form-group">
-        @Html.LabelFor(m => m.Contributor)
-        <br>@Html.DisplayFor(m => m.Contributor.Name)
+        @Html.LabelFor(m => m.Creator)
+        <br>@Html.DisplayFor(m => m.Creator.Name)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.CreationDateTime)
+        <br>@Html.DisplayFor(m => m.CreationDateTime)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.LastUpdater)
+        <br>@Html.DisplayFor(m => m.LastUpdater.Name)
     </div>
     <div class="col-sm-12 form-group">
         @Html.LabelFor(m => m.LastUpdateDateTime)

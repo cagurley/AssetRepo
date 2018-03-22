@@ -13,9 +13,11 @@ namespace AssetRepo.Models
         [Required]
         public string Title { get; set; }
 
-        public string Category { get; set; }
+        public ProjectCategoryViewModel Category { get; set; }
 
         public ContributorViewModel Creator { get; set; }
+
+        public DateTime CreationDateTime { get; set; }
 
         public AssetViewModel LastContribution { get; set; }
 

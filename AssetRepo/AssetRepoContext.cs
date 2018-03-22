@@ -16,5 +16,20 @@ namespace AssetRepo
         public virtual DbSet<Contributor> Contributors { get; set; }
 
         public virtual DbSet<Project> Projects { get; set; }
+
+        public virtual DbSet<ProjectCategory> ProjectCategories { get; set; }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Asset>()
+        //        .HasRequired(a => a.Project)
+        //        .WithMany(p => p.Assets)
+        //        .HasForeignKey(a => a.ProjectId);
+
+        //    modelBuilder.Entity<Project>()
+        //        .HasOptional(p => p.LastContribution)
+        //        .WithOptionalDependent()
+        //        .Map
+        //}
     }
 }
