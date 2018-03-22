@@ -25,15 +25,9 @@ namespace AssetRepo.Controllers
                         {
                             ProjectCategoryId = p.ProjectCategoryId
                         },
-                        Creator = new ContributorViewModel
-                        {
-                            ContributorId = p.CreatorId
-                        },
+                        CreatorId = p.CreatorId,
                         CreationDateTime = p.CreationDateTime,
-                        LastContribution = new AssetViewModel
-                        {
-                            AssetId = p.LastContributionId
-                        },
+                        LastContributionId = p.LastContributionId,
                         LastContributionDateTime = p.LastContributionDateTime,
                     }).ToList()
                 };

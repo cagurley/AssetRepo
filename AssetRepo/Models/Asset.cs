@@ -23,7 +23,5 @@ namespace AssetRepo.Models
         public virtual Project Project { get; set; }
         public virtual AssetType Type { get; set; }
         public virtual AssetSubtype Subtype { get; set; }
-        public virtual Contributor Creator { get; set; }
-        public virtual Contributor LastUpdater { get; set; }
     }
 }

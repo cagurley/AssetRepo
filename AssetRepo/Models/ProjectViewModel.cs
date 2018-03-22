@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -10,16 +11,16 @@ namespace AssetRepo.Models
     {
         public int? ProjectId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Project title is required."), DisplayName("Project Title")]
         public string Title { get; set; }
 
         public ProjectCategoryViewModel Category { get; set; }
 
-        public ContributorViewModel Creator { get; set; }
+        public int? CreatorId { get; set; }
 
         public DateTime CreationDateTime { get; set; }
 
-        public AssetViewModel LastContribution { get; set; }
+        public int? LastContributionId { get; set; }
 
         public DateTime LastContributionDateTime { get; set; }
     }

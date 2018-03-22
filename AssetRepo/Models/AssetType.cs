@@ -11,5 +11,7 @@ namespace AssetRepo.Models
         public int AssetTypeId { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<Asset> Assets { get; set; }
     }
 }

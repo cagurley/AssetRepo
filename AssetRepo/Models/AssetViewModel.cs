@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,7 @@ namespace AssetRepo.Models
     {
         public int? AssetId { get; set; }
 
-        [Required(ErrorMessage = "Title is required.")]
+        [Required(ErrorMessage = "Asset title is required."), DisplayName("Asset Title")]
         public string Title { get; set; }
 
         public ProjectViewModel Project { get; set; }
@@ -19,11 +20,11 @@ namespace AssetRepo.Models
 
         public AssetSubtypeViewModel Subtype { get; set; }
 
-        public ContributorViewModel Creator { get; set; }
+        public int? CreatorId { get; set; }
 
         public DateTime CreationDateTime { get; set; }
 
-        public ContributorViewModel LastUpdater { get; set; }
+        public int? LastUpdaterId { get; set; }
 
         public DateTime LastUpdateDateTime { get; set; }
 

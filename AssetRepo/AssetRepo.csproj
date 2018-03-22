@@ -130,6 +130,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803212028040_InitialCreate.cs" />
+    <Compile Include="Migrations\201803212028040_InitialCreate.Designer.cs">
+      <DependentUpon>201803212028040_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803222118082_InitialMigration.cs" />
+    <Compile Include="Migrations\201803222118082_InitialMigration.Designer.cs">
+      <DependentUpon>201803222118082_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\AssetListViewModel.cs" />
     <Compile Include="Models\AssetSubtype.cs" />
@@ -147,7 +156,14 @@
     <Compile Include="Models\ProjectViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803212028040_InitialCreate.resx">
+      <DependentUpon>201803212028040_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803222118082_InitialMigration.resx">
+      <DependentUpon>201803222118082_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
