@@ -11,17 +11,17 @@ namespace AssetRepo.Models
     {
         public int? ProjectId { get; set; }
 
-        [Required(ErrorMessage = "Project title is required."), DisplayName("Project Title")]
+        [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
         public ProjectCategoryViewModel Category { get; set; }
 
-        public int? CreatorId { get; set; }
+        public ContributorViewModel Creator { get; set; }
 
         public DateTime CreationDateTime { get; set; }
 
-        public int? LastContributionId { get; set; }
+        public ContributorViewModel LastUpdater { get; set; }
 
-        public DateTime LastContributionDateTime { get; set; }
+        public DateTime LastUpdateDateTime { get; set; }
     }
 }

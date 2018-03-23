@@ -16,7 +16,7 @@ namespace AssetRepo.Controllers
             {
                 var projectList = new ProjectListViewModel
                 {
-                    //Convert each Asset to an AssetViewModel
+                    //Convert each Project to a ProjectViewModel
                     Projects = assetRepoContext.Projects.Select(p => new ProjectViewModel
                     {
                         ProjectId = p.ProjectId,
@@ -25,10 +25,16 @@ namespace AssetRepo.Controllers
                         {
                             ProjectCategoryId = p.ProjectCategoryId
                         },
-                        CreatorId = p.CreatorId,
+                        Creator = new ContributorViewModel
+                        {
+                            ContributorId = p.CreatorId
+                        },
                         CreationDateTime = p.CreationDateTime,
-                        LastContributionId = p.LastContributionId,
-                        LastContributionDateTime = p.LastContributionDateTime,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = p.LastUpdaterId
+                        },
+                        LastUpdateDateTime = p.LastUpdateDateTime,
                     }).ToList()
                 };
 

@@ -14,10 +14,12 @@ namespace AssetRepo.Models
         public int ProjectCategoryId { get; set; }
         public int CreatorId { get; set; }
         public DateTime CreationDateTime { get; set; }
-        public int LastContributionId { get; set; }
-        public DateTime LastContributionDateTime { get; set; }
+        public int LastUpdaterId { get; set; }
+        public DateTime LastUpdateDateTime { get; set; }
 
         public virtual ProjectCategory ProjectCategory { get; set; }
+        public virtual Contributor Creator { get; set; }
+        public virtual Contributor LastUpdater { get; set; }
         public virtual ICollection<Asset> Assets { get; set; }
     }
 }

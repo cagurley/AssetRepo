@@ -40,9 +40,15 @@ namespace AssetRepo.Controllers
                         {
                             AssetSubtypeId = a.AssetSubtypeId
                         },
-                        CreatorId = a.CreatorId,
+                        Creator = new ContributorViewModel
+                        {
+                            ContributorId = a.CreatorId
+                        },
                         CreationDateTime = a.CreationDateTime,
-                        LastUpdaterId = a.LastUpdaterId,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = a.LastUpdaterId
+                        },
                         LastUpdateDateTime = a.LastUpdateDateTime,
                         Comment = a.Comment
                     }).ToList()
@@ -77,9 +83,15 @@ namespace AssetRepo.Controllers
                         {
                             AssetSubtypeId = asset.AssetSubtypeId
                         },
-                        CreatorId = asset.CreatorId,
+                        Creator = new ContributorViewModel
+                        {
+                            ContributorId = asset.CreatorId
+                        },
                         CreationDateTime = asset.CreationDateTime,
-                        LastUpdaterId = asset.LastUpdaterId,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = asset.LastUpdaterId
+                        },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
                         Comment = asset.Comment
                     };
@@ -168,9 +180,9 @@ namespace AssetRepo.Controllers
                     ProjectId = assetViewModel.Project.ProjectId.Value,
                     AssetTypeId = assetViewModel.Type.AssetTypeId.Value,
                     AssetSubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value,
-                    CreatorId = assetViewModel.CreatorId.Value,
+                    CreatorId = assetViewModel.Creator.ContributorId.Value,
                     CreationDateTime = assetViewModel.CreationDateTime,
-                    LastUpdaterId = assetViewModel.LastUpdaterId.Value,
+                    LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value,
                     LastUpdateDateTime = assetViewModel.LastUpdateDateTime,
                     Comment = assetViewModel.Comment
                 };
@@ -232,9 +244,17 @@ namespace AssetRepo.Controllers
                             AssetSubtypeId = asset.AssetSubtypeId,
                             Name = asset.Subtype.Name
                         },
-                        CreatorId = asset.CreatorId,
+                        Creator = new ContributorViewModel
+                        {
+                            ContributorId = asset.CreatorId,
+                            Name = asset.Creator.Name
+                        },
                         CreationDateTime = asset.CreationDateTime,
-                        LastUpdaterId = asset.LastUpdaterId,
+                        LastUpdater = new ContributorViewModel
+                        {
+                            ContributorId = asset.LastUpdaterId,
+                            Name = asset.LastUpdater.Name
+                        },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
                         Comment = asset.Comment
                     };
@@ -291,9 +311,9 @@ namespace AssetRepo.Controllers
                     asset.ProjectId = assetViewModel.Project.ProjectId.Value;
                     asset.AssetTypeId = assetViewModel.Type.AssetTypeId.Value;
                     asset.AssetSubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value;
-                    asset.CreatorId = assetViewModel.CreatorId.Value;
+                    asset.CreatorId = assetViewModel.Creator.ContributorId.Value;
                     asset.CreationDateTime = assetViewModel.CreationDateTime;
-                    asset.LastUpdaterId = assetViewModel.LastUpdaterId.Value;
+                    asset.LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value;
                     asset.LastUpdateDateTime = assetViewModel.LastUpdateDateTime;
                     asset.Comment = assetViewModel.Comment;
                     assetRepoContext.SaveChanges();

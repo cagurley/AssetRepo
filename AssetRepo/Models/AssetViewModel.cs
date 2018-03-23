@@ -11,7 +11,7 @@ namespace AssetRepo.Models
     {
         public int? AssetId { get; set; }
 
-        [Required(ErrorMessage = "Asset title is required."), DisplayName("Asset Title")]
+        [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
         public ProjectViewModel Project { get; set; }
@@ -20,11 +20,11 @@ namespace AssetRepo.Models
 
         public AssetSubtypeViewModel Subtype { get; set; }
 
-        public int? CreatorId { get; set; }
+        public ContributorViewModel Creator { get; set; }
 
         public DateTime CreationDateTime { get; set; }
 
-        public int? LastUpdaterId { get; set; }
+        public ContributorViewModel LastUpdater { get; set; }
 
         public DateTime LastUpdateDateTime { get; set; }
 

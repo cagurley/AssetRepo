@@ -138,6 +138,10 @@
     <Compile Include="Migrations\201803222118082_InitialMigration.Designer.cs">
       <DependentUpon>201803222118082_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803230417078_ProjectAndAssetCreatorsAndContributors.cs" />
+    <Compile Include="Migrations\201803230417078_ProjectAndAssetCreatorsAndContributors.Designer.cs">
+      <DependentUpon>201803230417078_ProjectAndAssetCreatorsAndContributors.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\AssetListViewModel.cs" />
@@ -162,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803222118082_InitialMigration.resx">
       <DependentUpon>201803222118082_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803230417078_ProjectAndAssetCreatorsAndContributors.resx">
+      <DependentUpon>201803230417078_ProjectAndAssetCreatorsAndContributors.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

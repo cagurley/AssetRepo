@@ -31,20 +31,20 @@
             @Html.DropDownListFor(m => m.Subtype.AssetSubtypeId, ViewBag.AssetSubtypes as IEnumerable<SelectListItem>, "Select an asset subtype...", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Subtype.AssetSubtypeId, null, new { @class = "text-danger" })
         </div>
-        @*<div class="form-group">
+        <div class="form-group">
             <label for="Creator_ContributorId">Creator</label>
             @Html.DropDownListFor(m => m.Creator.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the creator...", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Creator.ContributorId, null, new { @class = "text-danger" })
-        </div>*@
+        </div>
         <div class="form-group">
             @Html.LabelFor(m => m.CreationDateTime)
             @Html.TextBoxFor(m => m.CreationDateTime, new { @class = "form-control" })
         </div>
-        @*<div class="form-group">
+        <div class="form-group">
             <label for="LastUpdater_ContributorId">Most Recent Updater</label>
             @Html.DropDownListFor(m => m.LastUpdater.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the most recent updater...", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.LastUpdater.ContributorId, null, new { @class = "text-danger" })
-        </div>*@
+        </div>
         <div class="form-group">
             @Html.LabelFor(m => m.LastUpdateDateTime)
             @Html.TextBoxFor(m => m.LastUpdateDateTime, new { @class = "form-control" })
