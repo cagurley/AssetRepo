@@ -9,9 +9,9 @@ namespace AssetRepo.Models
 {
     public class AssetSubtypeViewModel
     {
+        [Required(ErrorMessage = "Subtype is required."), DisplayName("Subtype")]
         public int? AssetSubtypeId { get; set; }
 
-        [Required(ErrorMessage = "Subtype is required."), DisplayName("Subtype")]
         public string Name { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace AssetRepo.Models
 {
     public class ProjectCategoryViewModel
     {
-        public int? ProjectCategoryId { get; set; }
-
         [Required(ErrorMessage = "Category is required."), DisplayName("Category")]
+        public int? ProjectCategoryId { get; set; }
+        
         public string Name { get; set; }
     }
 }

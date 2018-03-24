@@ -1,11 +1,10 @@
+using AssetRepo.Models;
+using System;
+using System.Data.Entity.Migrations;
+
 namespace AssetRepo.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<AssetRepo.AssetRepoContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<AssetRepoContext>
     {
         public Configuration()
         {
@@ -13,12 +12,41 @@ namespace AssetRepo.Migrations
             ContextKey = "AssetRepo.AssetRepoContext";
         }
 
-        protected override void Seed(AssetRepo.AssetRepoContext context)
+        protected override void Seed(AssetRepoContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.AssetTypes.AddOrUpdate(
+                at => at.AssetTypeId,
+                new AssetType { AssetTypeId = 1, Name = "Code" }
+            );
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            context.AssetSubtypes.AddOrUpdate(
+                ast => ast.AssetSubtypeId,
+                new AssetSubtype { AssetSubtypeId = 1, Name = "Source" }
+            );
+
+            context.Contributors.AddOrUpdate(
+                c => c.ContributorId,
+                new Contributor { ContributorId = 1, Name = "SampleContributor" }
+            );
+
+            context.ProjectCategories.AddOrUpdate(
+                pc => pc.ProjectCategoryId,
+                new ProjectCategory { ProjectCategoryId = 1, Name = "Public Project" }
+            );
+
+            context.SaveChanges();
+
+            context.Projects.AddOrUpdate(
+                p => p.ProjectId,
+                new Project { ProjectId = 1, Title = "SampleProject", ProjectCategoryId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now }
+            );
+
+            context.SaveChanges();
+
+            context.Assets.AddOrUpdate(
+                a => a.AssetId,
+                new Asset { AssetId = 1, Title = "SampleTitle", ProjectId = 1, AssetTypeId = 1, AssetSubtypeId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Comment = "Sample comment" }
+            );
         }
     }
 }

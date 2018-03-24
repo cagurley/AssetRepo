@@ -9,9 +9,9 @@ namespace AssetRepo.Models
 {
     public class ContributorViewModel
     {
-        public int? ContributorId { get; set; }
-
         [Required(ErrorMessage = "Contributor is required."), DisplayName("Contributor")]
+        public int? ContributorId { get; set; }
+        
         public string Name { get; set; }
     }
 }

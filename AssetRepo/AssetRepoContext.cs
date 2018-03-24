@@ -19,17 +19,31 @@ namespace AssetRepo
 
         public virtual DbSet<ProjectCategory> ProjectCategories { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Asset>()
-        //        .HasRequired(a => a.Project)
-        //        .WithMany(p => p.Assets)
-        //        .HasForeignKey(a => a.ProjectId);
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Asset>()
+                .HasRequired(a => a.Creator)
+                .WithMany(c => c.AssetsCreated)
+                .HasForeignKey(a => a.CreatorId)
+                .WillCascadeOnDelete(false);
 
-        //    modelBuilder.Entity<Project>()
-        //        .HasOptional(p => p.LastContribution)
-        //        .WithOptionalDependent()
-        //        .Map
-        //}
+            modelBuilder.Entity<Asset>()
+                .HasRequired(a => a.LastUpdater)
+                .WithMany(c => c.AssetsLastUpdated)
+                .HasForeignKey(a => a.LastUpdaterId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Project>()
+                .HasRequired(p => p.Creator)
+                .WithMany(c => c.ProjectsCreated)
+                .HasForeignKey(p => p.CreatorId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Project>()
+                .HasRequired(p => p.LastUpdater)
+                .WithMany(c => c.ProjectsLastUpdated)
+                .HasForeignKey(p => p.LastUpdaterId)
+                .WillCascadeOnDelete(false);
+        }
     }
 }

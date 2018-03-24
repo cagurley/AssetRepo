@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,5 +12,10 @@ namespace AssetRepo.Models
         public int ContributorId { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<Asset> AssetsCreated { get; set; }
+        public virtual ICollection<Asset> AssetsLastUpdated { get; set; }
+        public virtual ICollection<Project> ProjectsCreated { get; set; }
+        public virtual ICollection<Project> ProjectsLastUpdated { get; set; }
     }
 }

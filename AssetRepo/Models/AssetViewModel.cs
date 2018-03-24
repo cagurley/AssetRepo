@@ -14,7 +14,7 @@ namespace AssetRepo.Models
         [Required(ErrorMessage = "Title is required.")]
         public string Title { get; set; }
 
-        public ProjectViewModel Project { get; set; }
+        public ProjectAssetViewModel Project { get; set; }
 
         public AssetTypeViewModel Type { get; set; }
 

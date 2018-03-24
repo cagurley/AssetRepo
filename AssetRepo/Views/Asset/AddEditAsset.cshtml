@@ -9,53 +9,61 @@
 <div class="row">
     <div class="col-sm-6 col-xs-10">
         @using (Html.BeginForm(isEditMode ? "EditAsset" : "AddAsset", "Asset"))
-    {
-        @Html.HiddenFor(m => m.AssetId)
-        <div class="form-group">
-            @Html.LabelFor(m => m.Title)
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            <label for="Project_ProjectId">Project</label>
-            @Html.DropDownListFor(m => m.Project.ProjectId, ViewBag.Projects as IEnumerable<SelectListItem>, "Select a project...", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Project.ProjectId, null, new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            <label for="Type_AssetTypeId">Type</label>
-            @Html.DropDownListFor(m => m.Type.AssetTypeId, ViewBag.AssetTypes as IEnumerable<SelectListItem>, "Select an asset type...", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Type.AssetTypeId, null, new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            <label for="Subtype_AssetSubtypeId">Subtype</label>
-            @Html.DropDownListFor(m => m.Subtype.AssetSubtypeId, ViewBag.AssetSubtypes as IEnumerable<SelectListItem>, "Select an asset subtype...", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Subtype.AssetSubtypeId, null, new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            <label for="Creator_ContributorId">Creator</label>
-            @Html.DropDownListFor(m => m.Creator.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the creator...", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Creator.ContributorId, null, new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.CreationDateTime)
-            @Html.TextBoxFor(m => m.CreationDateTime, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            <label for="LastUpdater_ContributorId">Most Recent Updater</label>
-            @Html.DropDownListFor(m => m.LastUpdater.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the most recent updater...", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.LastUpdater.ContributorId, null, new { @class = "text-danger" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.LastUpdateDateTime)
-            @Html.TextBoxFor(m => m.LastUpdateDateTime, new { @class = "form-control" })
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(m => m.Comment)
-            @Html.TextBoxFor(m => m.Comment, new { @class = "form-control" })
-        </div>
-        <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
-        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })
-        @Html.ValidationSummary(null, new { @class = "alert-danger", style = "margin-top: 15px; padding: 10px 0;" });
-}
+        {
+            @Html.HiddenFor(m => m.AssetId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Title)
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Project_ProjectId">Project</label>
+                @Html.DropDownListFor(m => m.Project.ProjectId, ViewBag.Projects as IEnumerable<SelectListItem>, "Select a project...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Project.ProjectId, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Type_AssetTypeId">Type</label>
+                @Html.DropDownListFor(m => m.Type.AssetTypeId, ViewBag.AssetTypes as IEnumerable<SelectListItem>, "Select an asset type...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Type.AssetTypeId, null, new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label for="Subtype_AssetSubtypeId">Subtype</label>
+                @Html.DropDownListFor(m => m.Subtype.AssetSubtypeId, ViewBag.AssetSubtypes as IEnumerable<SelectListItem>, "Select an asset subtype...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Subtype.AssetSubtypeId, null, new { @class = "text-danger" })
+            </div>
+            if (isEditMode)
+            {
+                @Html.HiddenFor(m => m.Creator.ContributorId)
+            }
+            else
+            {
+                <div class="form-group">
+                    <label for="Creator_ContributorId">Creator</label>
+                    @Html.DropDownListFor(m => m.Creator.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the creator...", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Creator.ContributorId, null, new { @class = "text-danger" })
+                </div>
+            }
+            @Html.HiddenFor(m => m.CreationDateTime)
+            if (isEditMode)
+            {
+                <div class="form-group">
+                    <label for="LastUpdater_ContributorId">Most Recent Updater</label>
+                    @Html.DropDownListFor(m => m.LastUpdater.ContributorId, ViewBag.Contributors as IEnumerable<SelectListItem>, "Select the most recent updater...", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LastUpdater.ContributorId, null, new { @class = "text-danger" })
+                </div>
+            }
+            else
+            {
+                @Html.HiddenFor(m => m.LastUpdater.ContributorId)
+            }
+            @Html.HiddenFor(m => m.LastUpdateDateTime)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Comment)
+                @Html.TextBoxFor(m => m.Comment, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })
+            @Html.ValidationSummary(null, new { @class = "alert-danger", style = "margin-top: 15px; padding: 10px 0;" });
+        }
     </div>
 </div>

@@ -18,8 +18,8 @@ namespace AssetRepo.Models
         public DateTime LastUpdateDateTime { get; set; }
 
         public virtual ProjectCategory ProjectCategory { get; set; }
+        public virtual ICollection<Asset> Assets { get; set; }
         public virtual Contributor Creator { get; set; }
         public virtual Contributor LastUpdater { get; set; }
-        public virtual ICollection<Asset> Assets { get; set; }
     }
 }

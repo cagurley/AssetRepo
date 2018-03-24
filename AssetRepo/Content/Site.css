@@ -1,4 +1,12 @@
-﻿footer {
+﻿nav {
+    margin-bottom: 10px;
+}
+
+#view {
+    padding-bottom: calc(51px + 1rem);
+}
+
+footer {
     background-color: #f9f9f9;
     padding: 20px 0 20px 0;
     border-top: 1px solid #ddd;

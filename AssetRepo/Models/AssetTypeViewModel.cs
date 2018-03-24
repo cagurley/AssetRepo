@@ -9,9 +9,9 @@ namespace AssetRepo.Models
 {
     public class AssetTypeViewModel
     {
+        [Required(ErrorMessage = "Type is required."), DisplayName("Type")]
         public int? AssetTypeId { get; set; }
 
-        [Required(ErrorMessage = "Type is required."), DisplayName("Type")]
         public string Name { get; set; }
     }
 }
