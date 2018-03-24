@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AssetRepo.Models
 {
-    public class ProjectAssetViewModel
+    public class ProjectPopulatedViewModel
     {
         [Required(ErrorMessage = "Project is required.")]
         public int? ProjectId { get; set; }
@@ -16,11 +16,11 @@ namespace AssetRepo.Models
 
         public ProjectCategoryViewModel Category { get; set; }
 
-        public ContributorViewModel Creator { get; set; }
+        public ContributorPopulatedViewModel Creator { get; set; }
 
         public DateTime CreationDateTime { get; set; }
 
-        public ContributorViewModel LastUpdater { get; set; }
+        public ContributorPopulatedViewModel LastUpdater { get; set; }
 
         public DateTime LastUpdateDateTime { get; set; }
     }

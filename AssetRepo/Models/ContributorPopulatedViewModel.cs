@@ -7,11 +7,11 @@ using System.Web;
 
 namespace AssetRepo.Models
 {
-    public class ContributorViewModel
+    public class ContributorPopulatedViewModel
     {
+        [Required(ErrorMessage = "Contributor is required."), DisplayName("Contributor")]
         public int? ContributorId { get; set; }
 
-        [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
     }
 }

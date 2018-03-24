@@ -9,13 +9,6 @@ namespace AssetRepo.Controllers
 {
     public class AssetController : Controller
     {
-        //// Sample data before seed method implementation
-        //public static AssetType SampleAssetType = new AssetType { AssetTypeId = 1, Name = "Code" };
-        //public static AssetSubtype SampleAssetSubtype = new AssetSubtype { AssetSubtypeId = 1, Name = "Source" };
-        //public static Contributor SampleContributor = new Contributor { ContributorId = 1, Name = "SampleContributor" };
-        //public static Asset SampleAsset = new Asset { AssetId = 1, Title = "SampleTitle", TypeId = 1, SubtypeId = 1, ContributorId = 1, LastUpdateDateTime = DateTime.Now, Comment = "Sample comment" };
-        //// REMOVE ABOVE AFTER SEED METHOD IMPLEMENTATION
-
         // GET: Asset
         public ActionResult Index()
         {
@@ -27,7 +20,7 @@ namespace AssetRepo.Controllers
                     Assets = assetRepoContext.Assets.Select(a => new AssetViewModel
                     {
                         AssetId = a.AssetId,
-                        Project = new ProjectAssetViewModel
+                        Project = new ProjectPopulatedViewModel
                         {
                             ProjectId = a.ProjectId,
                             Title = a.Project.Title,
@@ -36,13 +29,13 @@ namespace AssetRepo.Controllers
                                 ProjectCategoryId = a.Project.ProjectCategoryId,
                                 Name = a.Project.ProjectCategory.Name
                             },
-                            Creator = new ContributorViewModel
+                            Creator = new ContributorPopulatedViewModel
                             {
                                 ContributorId = a.Project.CreatorId,
                                 Name = a.Project.Creator.Name
                             },
                             CreationDateTime = a.Project.CreationDateTime,
-                            LastUpdater = new ContributorViewModel
+                            LastUpdater = new ContributorPopulatedViewModel
                             {
                                 ContributorId = a.Project.LastUpdaterId,
                                 Name = a.Project.LastUpdater.Name
@@ -61,14 +54,14 @@ namespace AssetRepo.Controllers
                             Name = a.Subtype.Name
                         },
                         //Creator = a.CreatorId,
-                        Creator = new ContributorViewModel
+                        Creator = new ContributorPopulatedViewModel
                         {
                             ContributorId = a.CreatorId,
                             Name = a.Creator.Name
                         },
                         CreationDateTime = a.CreationDateTime,
                         //LastUpdater = a.LastUpdaterId,
-                        LastUpdater = new ContributorViewModel
+                        LastUpdater = new ContributorPopulatedViewModel
                         {
                             ContributorId = a.LastUpdaterId,
                             Name = a.LastUpdater.Name
@@ -95,7 +88,7 @@ namespace AssetRepo.Controllers
                     {
                         AssetId = asset.AssetId,
                         Title = asset.Title,
-                        Project = new ProjectAssetViewModel
+                        Project = new ProjectPopulatedViewModel
                         {
                             ProjectId = asset.ProjectId,
                             Title = asset.Project.Title,
@@ -105,14 +98,14 @@ namespace AssetRepo.Controllers
                                 Name = asset.Project.ProjectCategory.Name
                             },
                             //Creator = asset.Project.CreatorId,
-                            Creator = new ContributorViewModel
+                            Creator = new ContributorPopulatedViewModel
                             {
                                 ContributorId = asset.Project.CreatorId,
                                 Name = asset.Project.Creator.Name
                             },
                             CreationDateTime = asset.Project.CreationDateTime,
                             //LastUpdater = asset.Project.LastUpdaterId,
-                            LastUpdater = new ContributorViewModel
+                            LastUpdater = new ContributorPopulatedViewModel
                             {
                                 ContributorId = asset.Project.LastUpdaterId,
                                 Name = asset.Project.LastUpdater.Name
@@ -130,14 +123,14 @@ namespace AssetRepo.Controllers
                             Name = asset.Subtype.Name
                         },
                         //Creator = asset.CreatorId,
-                        Creator = new ContributorViewModel
+                        Creator = new ContributorPopulatedViewModel
                         {
                             ContributorId = asset.CreatorId,
                             Name = asset.Creator.Name
                         },
                         CreationDateTime = asset.CreationDateTime,
                         //LastUpdater = asset.LastUpdaterId,
-                        LastUpdater = new ContributorViewModel
+                        LastUpdater = new ContributorPopulatedViewModel
                         {
                             ContributorId = asset.LastUpdaterId,
                             Name = asset.LastUpdater.Name
@@ -282,7 +275,7 @@ namespace AssetRepo.Controllers
                     {
                         AssetId = asset.AssetId,
                         Title = asset.Title,
-                        Project = new ProjectAssetViewModel
+                        Project = new ProjectPopulatedViewModel
                         {
                             ProjectId = asset.ProjectId,
                             Title = asset.Project.Title
@@ -297,13 +290,13 @@ namespace AssetRepo.Controllers
                             AssetSubtypeId = asset.AssetSubtypeId,
                             Name = asset.Subtype.Name
                         },
-                        Creator = new ContributorViewModel
+                        Creator = new ContributorPopulatedViewModel
                         {
                             ContributorId = asset.CreatorId,
                             Name = asset.Creator.Name
                         },
                         CreationDateTime = asset.CreationDateTime,
-                        LastUpdater = new ContributorViewModel
+                        LastUpdater = new ContributorPopulatedViewModel
                         {
                             ContributorId = asset.LastUpdaterId,
                             Name = asset.LastUpdater.Name
