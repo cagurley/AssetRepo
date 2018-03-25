@@ -29,5 +29,88 @@ namespace AssetRepo.Controllers
                 return View(contributorList);
             }
         }
+
+        // Detail functionality omitted as all relevant information is displayed in the Index view.
+
+        public ActionResult ContributorAdd()
+        {
+            var contributorViewModel = new ContributorViewModel();
+
+            return View("AddEditContributor", contributorViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AddContributor(ContributorViewModel contributorViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                using (var assetRepoContext = new AssetRepoContext())
+                {
+                    return View("AddEditContributor", contributorViewModel);
+                }
+            }
+
+            using (var assetRepoContext = new AssetRepoContext())
+            {
+                var contributor = new Contributor
+                {
+                    Name = contributorViewModel.Name
+                };
+
+                assetRepoContext.Contributors.Add(contributor);
+                assetRepoContext.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult ContributorEdit(int id)
+        {
+            using (var assetRepoContext = new AssetRepoContext())
+            {
+                var contributor = assetRepoContext.Contributors.SingleOrDefault(c => c.ContributorId == id);
+                if (contributor != null)
+                {
+                    var contributorViewModel = new ContributorViewModel
+                    {
+                        ContributorId = contributor.ContributorId,
+                        Name = contributor.Name
+                    };
+
+                    return View("AddEditContributor", contributorViewModel);
+                }
+            }
+
+            return new HttpNotFoundResult();
+        }
+
+        [HttpPost]
+        public ActionResult EditContributor(ContributorViewModel contributorViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                using (var assetRepoContext = new AssetRepoContext())
+                {
+                    return View("AddEditContributor", contributorViewModel);
+                }
+            }
+
+            using (var assetRepoContext = new AssetRepoContext())
+            {
+                var contributor = assetRepoContext.Contributors.SingleOrDefault(c => c.ContributorId == contributorViewModel.ContributorId);
+
+                if (contributor != null)
+                {
+                    contributor.Name = contributorViewModel.Name;
+                    assetRepoContext.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return new HttpNotFoundResult();
+        }
+
+        // Contributors are not intended to be deleted by a user, so this functionality has been omitted.
     }
 }

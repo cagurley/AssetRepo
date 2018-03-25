@@ -1,0 +1,25 @@
+﻿@model AssetRepo.Models.ContributorViewModel
+@{
+    var isEditMode = Model.ContributorId != null;
+    ViewBag.Title = isEditMode ? "Edit " + Model.Name : "Add Contributor";
+}
+
+<h2>@Model.Name</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-6 col-xs-10">
+        @using (Html.BeginForm(isEditMode ? "EditContributor" : "AddContributor", "Contributor"))
+        {
+            @Html.HiddenFor(m => m.ContributorId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+            </div>
+            <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })
+            @Html.ValidationSummary(null, new { @class = "alert alert-danger", style = "margin-top: 15px; padding: 10px 0;" });
+        }
+    </div>
+</div>
+

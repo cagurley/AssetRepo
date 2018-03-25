@@ -90,6 +90,8 @@ namespace AssetRepo.Migrations
                 a => a.AssetId,
                 new Asset { AssetId = 1, Title = "SampleTitle", ProjectId = 1, AssetTypeSubtypePairingId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Comment = "Sample comment", FilePlaceholder = "Pretend file" }
             );
+
+            context.SaveChanges();
         }
     }
 }

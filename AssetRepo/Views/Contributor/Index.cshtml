@@ -19,33 +19,7 @@
             <tr>
                 <td>@Model.Contributors[i].Name</td>
                 <td>
-                    @*@Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId })
-                    | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId })*@
-                    @*| @Html.ActionLink("Food Preferences", "ManageFoodPreferences", new { id = Model.People[i].PersonId })*@
-                    @*| <a data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
-                    <div class="modal fade" id="@("deleteAssetModal" + i)" tabindex="-1" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                @using (Html.BeginForm("DeleteAsset", "Asset"))
-                                {
-                                    <input type="hidden" value="@Model.Assets[i].AssetId" name="AssetId" />
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <h4 class="modal-title">Delete @Model.Assets[i].Title</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete @Model.Assets[i].Title?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-dark">Yes</button>
-                                        <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>*@
+                    @Html.ActionLink("Edit", "ContributorEdit", new { id = Model.Contributors[i].ContributorId }, new { @class = "text-dark" })
                 </td>
             </tr>
         }
@@ -56,5 +30,5 @@
     <label>Total Assets:</label> @Model.TotalContributors
 </div>
 <div class="col-sm-12">
-    @*@Html.ActionLink("Add Asset", "AssetAdd", null, new { @class = "btn btn-dark" })*@
+    @Html.ActionLink("Add Contributor", "ContributorAdd", null, new { @class = "btn btn-dark" })
 </div>
