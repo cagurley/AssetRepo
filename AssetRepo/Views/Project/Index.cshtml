@@ -14,35 +14,24 @@
         </tr>
     </thead>
     <tbody>
-        @for (var i = 0; i < Model.Projects.Count; i++)
+        @for (var i = 0; i < 2; i++)
         {
+            // This loop renders the Miscellaneous and General Use projects, which should never be edited.
             <tr>
                 <td>@Model.Projects[i].Title</td>
                 <td>
-                    @*@Html.ActionLink("Detail", "RestaurantDetail", new { id = Model.Restaurants[i].RestaurantId })
-                    | @Html.ActionLink("Edit", "RestaurantEdit", new { id = Model.Restaurants[i].RestaurantId })
-                    | <a data-toggle="modal" href="@("#deleteRestaurantModal" + i)">Delete</a>
-                    <div class="modal fade" id="@("deleteRestaurantModal" + i)" tabindex="-1" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                @using (Html.BeginForm("DeleteRestaurant", "Restaurant"))
-                                {
-                                    <input type="hidden" value="@Model.Restaurants[i].RestaurantId" name="RestaurantId" />
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Delete @Model.Restaurants[i].Name</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure you want to delete @Model.Restaurants[i].Name?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Yes</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>*@
+                    @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                </td>
+            </tr>
+        }
+        @for (var i = 2; i < Model.Projects.Count; i++)
+        {
+            // This loop renders the remaining Blind Collab and Public Project projects, which can be edited.
+            <tr>
+                <td>@Model.Projects[i].Title</td>
+                <td>
+                    @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("Edit", "ProjectEdit", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
                 </td>
             </tr>
         }
@@ -53,5 +42,5 @@
     <label>Total Projects:</label> @Model.TotalProjects
 </div>
 <div class="col-sm-12">
-    @*@Html.ActionLink("Add Restaurant", "RestaurantAdd", null, new { @class = "btn btn-primary" })*@
+    @Html.ActionLink("Add Project", "ProjectAdd", null, new { @class = "btn btn-dark" })
 </div>

@@ -40,7 +40,8 @@ namespace AssetRepo.Controllers
                                 ContributorId = a.Project.LastUpdaterId,
                                 Name = a.Project.LastUpdater.Name
                             },
-                            LastUpdateDateTime = a.Project.LastUpdateDateTime
+                            LastUpdateDateTime = a.Project.LastUpdateDateTime,
+                            Description = a.Project.Description
                         },
                         Title = a.Title,
                         TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
@@ -111,7 +112,8 @@ namespace AssetRepo.Controllers
                                 ContributorId = asset.Project.LastUpdaterId,
                                 Name = asset.Project.LastUpdater.Name
                             },
-                            LastUpdateDateTime = asset.Project.LastUpdateDateTime
+                            LastUpdateDateTime = asset.Project.LastUpdateDateTime,
+                            Description = asset.Project.Description
                         },
                         TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
@@ -264,7 +266,25 @@ namespace AssetRepo.Controllers
                         Project = new ProjectPopulatedViewModel
                         {
                             ProjectId = asset.ProjectId,
-                            Title = asset.Project.Title
+                            Title = asset.Project.Title,
+                            Category = new ProjectCategoryViewModel
+                            {
+                                ProjectCategoryId = asset.Project.ProjectCategoryId,
+                                Name = asset.Project.ProjectCategory.Name
+                            },
+                            Creator = new ContributorPopulatedViewModel
+                            {
+                                ContributorId = asset.Project.CreatorId,
+                                Name = asset.Project.Creator.Name
+                            },
+                            CreationDateTime = asset.Project.CreationDateTime,
+                            LastUpdater = new ContributorPopulatedViewModel
+                            {
+                                ContributorId = asset.Project.LastUpdaterId,
+                                Name = asset.Project.LastUpdater.Name
+                            },
+                            LastUpdateDateTime = asset.Project.LastUpdateDateTime,
+                            Description = asset.Project.Description
                         },
                         TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
@@ -374,43 +394,5 @@ namespace AssetRepo.Controllers
 
             return new HttpNotFoundResult();
         }
-
-        //public ActionResult ManageFoodPreferences(int id)
-        //{
-        //    using (var assetRepoContext = new AssetRepoContext())
-        //    {
-        //        var person = assetRepoContext.People.Include("FoodPreferences").SingleOrDefault(p => p.PersonId == id);
-
-        //        if (person == null)
-        //            return new HttpNotFoundResult();
-
-        //        var personViewModel = new PersonViewModel
-        //        {
-        //            PersonId = person.PersonId,
-        //            LastName = person.LastName,
-        //            FirstName = person.FirstName
-        //        };
-
-        //        //By adding .ToList() to assetRepoContext.Cuisines, we are forcing a single query to retrieve all cusines from the
-        //        //database before we begin the loop. If we omit .ToList(), it may still work, but it will result in a seperate
-        //        //round-trip to the database to get each cuisine.
-        //        foreach (var cuisine in assetRepoContext.Cuisines.ToList())
-        //        {
-        //            //If no rating is found, currentRating will be null. "?." is inown as the null-conditional operator. It
-        //            //keeps us from having to write more code to deal with null values.
-        //            var currentRating = person.FoodPreferences.SingleOrDefault(fp => fp.CuisineId == cuisine.CuisineId)?.Rating;
-
-        //            personViewModel.FoodPreferences.Add(new FoodPreferenceViewModel
-        //            {
-        //                Cuisine = new CuisineViewModel { CuisineId = cuisine.CuisineId, Name = cuisine.Name },
-        //                //If currentRating is null, we will assign -1 to indicate that there is no rating. "??" is known as
-        //                //the null-coalescing operator. It allows us to specify a different value if currentRating is null.
-        //                Rating = currentRating ?? -1
-        //            });
-        //        }
-
-        //        return View(personViewModel);
-        //    }
-        //}
     }
 }

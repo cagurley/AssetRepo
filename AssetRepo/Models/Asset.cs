@@ -9,7 +9,7 @@ namespace AssetRepo.Models
     public class Asset
     {
         public int AssetId { get; set; }
-        [Required]
+        [Required, StringLength(200)]
         public string Title { get; set; }
         public int ProjectId { get; set; }
         public int AssetTypeSubtypePairingId { get; set; }
@@ -17,6 +17,7 @@ namespace AssetRepo.Models
         public DateTime CreationDateTime { get; set; }
         public int LastUpdaterId { get; set; }
         public DateTime LastUpdateDateTime { get; set; }
+        [StringLength(200)]
         public string Comment { get; set; }
         [Required]
         public string FilePlaceholder { get; set; }

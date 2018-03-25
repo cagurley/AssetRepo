@@ -108,6 +108,9 @@
     <Content Include="Views\Asset\AddEditAsset.cshtml" />
     <Content Include="Views\Asset\AssetDetail.cshtml" />
     <Content Include="Views\Contributor\Index.cshtml" />
+    <Content Include="Views\Project\ProjectDetail.cshtml" />
+    <Content Include="Views\Project\AddEditProject.cshtml" />
+    <Content Include="Views\Project\EditNotAllowed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -138,6 +141,10 @@
     <Compile Include="Migrations\201803250535404_FilePlaceholder.Designer.cs">
       <DependentUpon>201803250535404_FilePlaceholder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803251700567_StringLengthsProjectDescription.cs" />
+    <Compile Include="Migrations\201803251700567_StringLengthsProjectDescription.Designer.cs">
+      <DependentUpon>201803251700567_StringLengthsProjectDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\AssetListViewModel.cs" />
@@ -166,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803250535404_FilePlaceholder.resx">
       <DependentUpon>201803250535404_FilePlaceholder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803251700567_StringLengthsProjectDescription.resx">
+      <DependentUpon>201803251700567_StringLengthsProjectDescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

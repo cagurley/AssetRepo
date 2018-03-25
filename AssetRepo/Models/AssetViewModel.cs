@@ -11,7 +11,7 @@ namespace AssetRepo.Models
     {
         public int? AssetId { get; set; }
 
-        [Required(ErrorMessage = "Title is required.")]
+        [Required(ErrorMessage = "Title is required."), StringLength(200, ErrorMessage = "Title cannot exceed 200 characters.")]
         public string Title { get; set; }
 
         public ProjectPopulatedViewModel Project { get; set; }
@@ -26,6 +26,7 @@ namespace AssetRepo.Models
 
         public DateTime LastUpdateDateTime { get; set; }
 
+        [StringLength(200, ErrorMessage = "Comment cannot exceed 200 characters.")]
         public string Comment { get; set; }
 
         [Required(ErrorMessage = "File is required."), DisplayName("File")]

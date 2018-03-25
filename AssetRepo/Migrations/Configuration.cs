@@ -46,7 +46,10 @@ namespace AssetRepo.Migrations
 
             context.ProjectCategories.AddOrUpdate(
                 pc => pc.ProjectCategoryId,
-                new ProjectCategory { ProjectCategoryId = 1, Name = "Public Project" }
+                new ProjectCategory { ProjectCategoryId = 1, Name = "Miscellaneous" },
+                new ProjectCategory { ProjectCategoryId = 2, Name = "General Use" },
+                new ProjectCategory { ProjectCategoryId = 3, Name = "Blind Collab" },
+                new ProjectCategory { ProjectCategoryId = 4, Name = "Public Project" }
             );
 
             context.SaveChanges();
@@ -77,7 +80,8 @@ namespace AssetRepo.Migrations
 
             context.Projects.AddOrUpdate(
                 p => p.ProjectId,
-                new Project { ProjectId = 1, Title = "SampleProject", ProjectCategoryId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now }
+                new Project { ProjectId = 1, Title = "Miscellaneous", ProjectCategoryId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Description = "This is the project containing miscellaneous assets not assigned a clear use. Please ask the respective contributor for use of an asset from this project/category!" },
+                new Project { ProjectId = 2, Title = "General Use", ProjectCategoryId = 2, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Description = "This is the project containing assorted assets intended for broad public use. Assets in this project/category are free for appropriation so long as credit is properly attributed." }
             );
 
             context.SaveChanges();

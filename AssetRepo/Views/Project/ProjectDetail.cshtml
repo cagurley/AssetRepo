@@ -1,0 +1,36 @@
+﻿@model AssetRepo.Models.ProjectViewModel
+@{
+    ViewBag.Title = "Project Detail";
+}
+
+<h2>@Model.Title</h2>
+<hr>
+<div class="row">
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Category, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.Category.Name)
+    </div>
+    <div class="col-sm-6 form-group">
+        @Html.LabelFor(m => m.Creator, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.Creator.Name)
+    </div>
+    <div class="col-sm-6 form-group">
+        @Html.LabelFor(m => m.CreationDateTime, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.CreationDateTime)
+    </div>
+    <div class="col-sm-6 form-group">
+        @Html.LabelFor(m => m.LastUpdater, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.LastUpdater.Name)
+    </div>
+    <div class="col-sm-6 form-group">
+        @Html.LabelFor(m => m.LastUpdateDateTime, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.LastUpdateDateTime)
+    </div>
+    <div class="col-sm-12 form-group">
+        @Html.LabelFor(m => m.Description, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.Description)
+    </div>
+    <div class="col-sm-12">
+        @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-dark" })
+    </div>
+</div>

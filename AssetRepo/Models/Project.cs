@@ -9,13 +9,15 @@ namespace AssetRepo.Models
     public class Project
     {
         public int ProjectId { get; set; }
-        [Required]
+        [Required, StringLength(200)]
         public string Title { get; set; }
         public int ProjectCategoryId { get; set; }
         public int CreatorId { get; set; }
         public DateTime CreationDateTime { get; set; }
         public int LastUpdaterId { get; set; }
         public DateTime LastUpdateDateTime { get; set; }
+        [Required, StringLength(2000)]
+        public string Description { get; set; }
 
         public virtual ProjectCategory ProjectCategory { get; set; }
         public virtual ICollection<Asset> Assets { get; set; }

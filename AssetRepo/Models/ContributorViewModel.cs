@@ -11,7 +11,7 @@ namespace AssetRepo.Models
     {
         public int? ContributorId { get; set; }
 
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Name is required."), StringLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
         public string Name { get; set; }
     }
 }

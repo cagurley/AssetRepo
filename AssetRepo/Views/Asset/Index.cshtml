@@ -21,7 +21,6 @@
                 <td>
                     @Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId }, new { @class = "text-dark" })
                     | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId }, new { @class = "text-dark" })
-                    @*| @Html.ActionLink("Food Preferences", "ManageFoodPreferences", new { id = Model.People[i].PersonId })*@
                     | <a class="text-dark" data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
                     <div class="modal fade" id="@("deleteAssetModal" + i)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">

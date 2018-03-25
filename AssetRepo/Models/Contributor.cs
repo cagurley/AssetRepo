@@ -10,7 +10,7 @@ namespace AssetRepo.Models
     public class Contributor
     {
         public int ContributorId { get; set; }
-        [Required]
+        [Required, StringLength(100)]
         public string Name { get; set; }
 
         public virtual ICollection<Asset> AssetsCreated { get; set; }

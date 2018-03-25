@@ -1,30 +1,25 @@
-﻿@model AssetRepo.Models.AssetViewModel
+﻿@model AssetRepo.Models.ProjectViewModel
 @{
-    var isEditMode = Model.AssetId != null;
-    ViewBag.Title = isEditMode ? "Edit " + Model.Title : "Add Asset";
+    var isEditMode = Model.ProjectId != null;
+    ViewBag.Title = isEditMode ? "Edit " + Model.Title : "Add Project";
 }
 
 <h2>@Model.Title</h2>
 <hr>
 <div class="row">
     <div class="col-sm-6 col-xs-10">
-        @using (Html.BeginForm(isEditMode ? "EditAsset" : "AddAsset", "Asset"))
+        @using (Html.BeginForm(isEditMode ? "EditProject" : "AddProject", "Project"))
         {
-            @Html.HiddenFor(m => m.AssetId)
+            @Html.HiddenFor(m => m.ProjectId)
             <div class="form-group">
                 @Html.LabelFor(m => m.Title)
                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label for="Project_ProjectId">Project</label>
-                @Html.DropDownListFor(m => m.Project.ProjectId, ViewBag.Projects as IEnumerable<SelectListItem>, "Select a project...", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Project.ProjectId, null, new { @class = "text-danger" })
-            </div>
-            <div class="form-group">
-                <label for="Type_AssetTypeId">Type/Subtype</label>
-                @Html.DropDownListFor(m => m.TypeSubtypePairing.AssetTypeSubtypePairingId, ViewBag.AssetTypeSubtypePairings as IEnumerable<SelectListItem>, "Select an asset type and subtype...", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.TypeSubtypePairing.AssetTypeSubtypePairingId, null, new { @class = "text-danger" })
+                <label for="Category_ProjectCategoryId">Category</label>
+                @Html.DropDownListFor(m => m.Category.ProjectCategoryId, ViewBag.ProjectCategories as IEnumerable<SelectListItem>, "Select a project category...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Category.ProjectCategoryId, null, new { @class = "text-danger" })
             </div>
             if (isEditMode)
             {
@@ -38,7 +33,7 @@
                     @Html.ValidationMessageFor(m => m.Creator.ContributorId, null, new { @class = "text-danger" })
                 </div>
             }
-                @Html.HiddenFor(m => m.CreationDateTime)
+            @Html.HiddenFor(m => m.CreationDateTime)
             if (isEditMode)
             {
                 <div class="form-group">
@@ -49,19 +44,14 @@
             }
             else
             {
-            //This is not passed during asset addition since this value will be null and set after submit by the controller.
-            //@Html.HiddenFor(m => m.LastUpdater.ContributorId)
+                //This is not passed during asset addition since this value will be null and set after submit by the controller.
+                //@Html.HiddenFor(m => m.LastUpdater.ContributorId)
             }
             @Html.HiddenFor(m => m.LastUpdateDateTime)
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Comment)
-                    @Html.TextBoxFor(m => m.Comment, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Comment, null, new { @class = "text-danger" })
-                </div>
             <div class="form-group">
-                @Html.LabelFor(m => m.FilePlaceholder)
-                @Html.TextAreaFor(m => m.FilePlaceholder, 5, 10, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.FilePlaceholder, null, new { @class = "text-danger" })
+                @Html.LabelFor(m => m.Description)
+                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
             </div>
             <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
             @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })

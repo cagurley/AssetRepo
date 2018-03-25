@@ -23,5 +23,7 @@ namespace AssetRepo.Models
         public ContributorPopulatedViewModel LastUpdater { get; set; }
 
         public DateTime LastUpdateDateTime { get; set; }
+
+        public string Description { get; set; }
     }
 }
