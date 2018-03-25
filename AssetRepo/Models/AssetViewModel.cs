@@ -16,9 +16,7 @@ namespace AssetRepo.Models
 
         public ProjectPopulatedViewModel Project { get; set; }
 
-        public AssetTypeViewModel Type { get; set; }
-
-        public AssetSubtypeViewModel Subtype { get; set; }
+        public AssetTypeSubtypePairingViewModel TypeSubtypePairing { get; set; }
 
         public ContributorPopulatedViewModel Creator { get; set; }
 
@@ -29,5 +27,8 @@ namespace AssetRepo.Models
         public DateTime LastUpdateDateTime { get; set; }
 
         public string Comment { get; set; }
+
+        [Required(ErrorMessage = "File is required."), DisplayName("File")]
+        public string FilePlaceholder { get; set; }
     }
 }

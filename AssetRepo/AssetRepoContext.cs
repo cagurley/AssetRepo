@@ -13,6 +13,8 @@ namespace AssetRepo
 
         public virtual DbSet<AssetSubtype> AssetSubtypes { get; set; }
 
+        public virtual DbSet<AssetTypeSubtypePairing> AssetTypeSubtypePairings { get; set; }
+
         public virtual DbSet<Contributor> Contributors { get; set; }
 
         public virtual DbSet<Project> Projects { get; set; }

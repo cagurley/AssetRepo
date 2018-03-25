@@ -43,31 +43,34 @@ namespace AssetRepo.Controllers
                             LastUpdateDateTime = a.Project.LastUpdateDateTime
                         },
                         Title = a.Title,
-                        Type = new AssetTypeViewModel
+                        TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
-                            AssetTypeId = a.AssetTypeId,
-                            Name = a.Type.Name
+                            AssetTypeSubtypePairingId = a.AssetTypeSubtypePairingId,
+                            Type = new AssetTypeViewModel
+                            {
+                                AssetTypeId = a.AssetTypeSubtypePairing.AssetTypeId,
+                                Name = a.AssetTypeSubtypePairing.AssetType.Name
+                            },
+                            Subtype = new AssetSubtypeViewModel
+                            {
+                                AssetSubtypeId = a.AssetTypeSubtypePairing.AssetSubtypeId,
+                                Name = a.AssetTypeSubtypePairing.AssetSubtype.Name
+                            }
                         },
-                        Subtype = new AssetSubtypeViewModel
-                        {
-                            AssetSubtypeId = a.AssetSubtypeId,
-                            Name = a.Subtype.Name
-                        },
-                        //Creator = a.CreatorId,
                         Creator = new ContributorPopulatedViewModel
                         {
                             ContributorId = a.CreatorId,
                             Name = a.Creator.Name
                         },
                         CreationDateTime = a.CreationDateTime,
-                        //LastUpdater = a.LastUpdaterId,
                         LastUpdater = new ContributorPopulatedViewModel
                         {
                             ContributorId = a.LastUpdaterId,
                             Name = a.LastUpdater.Name
                         },
                         LastUpdateDateTime = a.LastUpdateDateTime,
-                        Comment = a.Comment
+                        Comment = a.Comment,
+                        FilePlaceholder = a.FilePlaceholder
                     }).ToList()
                 };
 
@@ -97,14 +100,12 @@ namespace AssetRepo.Controllers
                                 ProjectCategoryId = asset.Project.ProjectCategoryId,
                                 Name = asset.Project.ProjectCategory.Name
                             },
-                            //Creator = asset.Project.CreatorId,
                             Creator = new ContributorPopulatedViewModel
                             {
                                 ContributorId = asset.Project.CreatorId,
                                 Name = asset.Project.Creator.Name
                             },
                             CreationDateTime = asset.Project.CreationDateTime,
-                            //LastUpdater = asset.Project.LastUpdaterId,
                             LastUpdater = new ContributorPopulatedViewModel
                             {
                                 ContributorId = asset.Project.LastUpdaterId,
@@ -112,31 +113,34 @@ namespace AssetRepo.Controllers
                             },
                             LastUpdateDateTime = asset.Project.LastUpdateDateTime
                         },
-                        Type = new AssetTypeViewModel
+                        TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
-                            AssetTypeId = asset.AssetTypeId,
-                            Name = asset.Type.Name
+                            AssetTypeSubtypePairingId = asset.AssetTypeSubtypePairingId,
+                            Type = new AssetTypeViewModel
+                            {
+                                AssetTypeId = asset.AssetTypeSubtypePairing.AssetTypeId,
+                                Name = asset.AssetTypeSubtypePairing.AssetType.Name
+                            },
+                            Subtype = new AssetSubtypeViewModel
+                            {
+                                AssetSubtypeId = asset.AssetTypeSubtypePairing.AssetSubtypeId,
+                                Name = asset.AssetTypeSubtypePairing.AssetSubtype.Name
+                            }
                         },
-                        Subtype = new AssetSubtypeViewModel
-                        {
-                            AssetSubtypeId = asset.AssetSubtypeId,
-                            Name = asset.Subtype.Name
-                        },
-                        //Creator = asset.CreatorId,
                         Creator = new ContributorPopulatedViewModel
                         {
                             ContributorId = asset.CreatorId,
                             Name = asset.Creator.Name
                         },
                         CreationDateTime = asset.CreationDateTime,
-                        //LastUpdater = asset.LastUpdaterId,
                         LastUpdater = new ContributorPopulatedViewModel
                         {
                             ContributorId = asset.LastUpdaterId,
                             Name = asset.LastUpdater.Name
                         },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
-                        Comment = asset.Comment
+                        Comment = asset.Comment,
+                        FilePlaceholder = asset.FilePlaceholder
                     };
 
                     return View(assetViewModel);
@@ -156,16 +160,10 @@ namespace AssetRepo.Controllers
                     Text = p.Title
                 }).ToList();
 
-                ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
+                ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                 {
-                    Value = at.AssetTypeId.ToString(),
-                    Text = at.Name
-                }).ToList();
-
-                ViewBag.AssetSubtypes = assetRepoContext.AssetSubtypes.Select(ast => new SelectListItem
-                {
-                    Value = ast.AssetSubtypeId.ToString(),
-                    Text = ast.Name
+                    Value = atsp.AssetTypeSubtypePairingId.ToString(),
+                    Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                 }).ToList();
 
                 ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
@@ -193,16 +191,10 @@ namespace AssetRepo.Controllers
                         Text = p.Title
                     }).ToList();
 
-                    ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
+                    ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                     {
-                        Value = at.AssetTypeId.ToString(),
-                        Text = at.Name
-                    }).ToList();
-
-                    ViewBag.AssetSubtypes = assetRepoContext.AssetSubtypes.Select(ast => new SelectListItem
-                    {
-                        Value = ast.AssetSubtypeId.ToString(),
-                        Text = ast.Name
+                        Value = atsp.AssetTypeSubtypePairingId.ToString(),
+                        Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                     }).ToList();
 
                     ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
@@ -221,8 +213,7 @@ namespace AssetRepo.Controllers
                 {
                     Title = assetViewModel.Title,
                     ProjectId = assetViewModel.Project.ProjectId.Value,
-                    AssetTypeId = assetViewModel.Type.AssetTypeId.Value,
-                    AssetSubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value,
+                    AssetTypeSubtypePairingId = assetViewModel.TypeSubtypePairing.AssetTypeSubtypePairingId.Value,
                     CreatorId = assetViewModel.Creator.ContributorId.Value,
                     // Automatically set to current system datetime
                     CreationDateTime = DateTime.Now,
@@ -230,7 +221,8 @@ namespace AssetRepo.Controllers
                     LastUpdaterId = assetViewModel.Creator.ContributorId.Value,
                     // Automatically set to current system datetime
                     LastUpdateDateTime = DateTime.Now,
-                    Comment = assetViewModel.Comment
+                    Comment = assetViewModel.Comment,
+                    FilePlaceholder = assetViewModel.FilePlaceholder
                 };
 
                 assetRepoContext.Assets.Add(asset);
@@ -250,16 +242,10 @@ namespace AssetRepo.Controllers
                     Text = p.Title
                 }).ToList();
 
-                ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
+                ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                 {
-                    Value = at.AssetTypeId.ToString(),
-                    Text = at.Name
-                }).ToList();
-
-                ViewBag.AssetSubtypes = assetRepoContext.AssetSubtypes.Select(ast => new SelectListItem
-                {
-                    Value = ast.AssetSubtypeId.ToString(),
-                    Text = ast.Name
+                    Value = atsp.AssetTypeSubtypePairingId.ToString(),
+                    Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                 }).ToList();
 
                 ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
@@ -280,15 +266,19 @@ namespace AssetRepo.Controllers
                             ProjectId = asset.ProjectId,
                             Title = asset.Project.Title
                         },
-                        Type = new AssetTypeViewModel
+                        TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
-                            AssetTypeId = asset.AssetTypeId,
-                            Name = asset.Type.Name
-                        },
-                        Subtype = new AssetSubtypeViewModel
-                        {
-                            AssetSubtypeId = asset.AssetSubtypeId,
-                            Name = asset.Subtype.Name
+                            AssetTypeSubtypePairingId = asset.AssetTypeSubtypePairingId,
+                            Type = new AssetTypeViewModel
+                            {
+                                AssetTypeId = asset.AssetTypeSubtypePairing.AssetTypeId,
+                                Name = asset.AssetTypeSubtypePairing.AssetType.Name
+                            },
+                            Subtype = new AssetSubtypeViewModel
+                            {
+                                AssetSubtypeId = asset.AssetTypeSubtypePairing.AssetSubtypeId,
+                                Name = asset.AssetTypeSubtypePairing.AssetSubtype.Name
+                            }
                         },
                         Creator = new ContributorPopulatedViewModel
                         {
@@ -302,7 +292,8 @@ namespace AssetRepo.Controllers
                             Name = asset.LastUpdater.Name
                         },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
-                        Comment = asset.Comment
+                        Comment = asset.Comment,
+                        FilePlaceholder = asset.FilePlaceholder
                     };
 
                     return View("AddEditAsset", assetViewModel);
@@ -325,16 +316,10 @@ namespace AssetRepo.Controllers
                         Text = p.Title
                     }).ToList();
 
-                    ViewBag.AssetTypes = assetRepoContext.AssetTypes.Select(at => new SelectListItem
+                    ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                     {
-                        Value = at.AssetTypeId.ToString(),
-                        Text = at.Name
-                    }).ToList();
-
-                    ViewBag.AssetSubtypes = assetRepoContext.AssetSubtypes.Select(ast => new SelectListItem
-                    {
-                        Value = ast.AssetSubtypeId.ToString(),
-                        Text = ast.Name
+                        Value = atsp.AssetTypeSubtypePairingId.ToString(),
+                        Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                     }).ToList();
 
                     ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
@@ -355,13 +340,13 @@ namespace AssetRepo.Controllers
                 {
                     asset.Title = assetViewModel.Title;
                     asset.ProjectId = assetViewModel.Project.ProjectId.Value;
-                    asset.AssetTypeId = assetViewModel.Type.AssetTypeId.Value;
-                    asset.AssetSubtypeId = assetViewModel.Subtype.AssetSubtypeId.Value;
+                    asset.AssetTypeSubtypePairingId = assetViewModel.TypeSubtypePairing.AssetTypeSubtypePairingId.Value;
                     // CreatorId and CreationDateTime omitted so as to be set only during add
                     asset.LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value;
                     // Automatically set to current system datetime
                     asset.LastUpdateDateTime = DateTime.Now;
                     asset.Comment = assetViewModel.Comment;
+                    asset.FilePlaceholder = assetViewModel.FilePlaceholder;
                     assetRepoContext.SaveChanges();
 
                     return RedirectToAction("Index");

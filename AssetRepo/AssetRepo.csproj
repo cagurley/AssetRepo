@@ -130,33 +130,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803212028040_InitialCreate.cs" />
-    <Compile Include="Migrations\201803212028040_InitialCreate.Designer.cs">
-      <DependentUpon>201803212028040_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201803250419518_Reinitialization.cs" />
+    <Compile Include="Migrations\201803250419518_Reinitialization.Designer.cs">
+      <DependentUpon>201803250419518_Reinitialization.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803222118082_InitialMigration.cs" />
-    <Compile Include="Migrations\201803222118082_InitialMigration.Designer.cs">
-      <DependentUpon>201803222118082_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803230417078_ProjectAndAssetCreatorsAndContributors.cs" />
-    <Compile Include="Migrations\201803230417078_ProjectAndAssetCreatorsAndContributors.Designer.cs">
-      <DependentUpon>201803230417078_ProjectAndAssetCreatorsAndContributors.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803231721083_InitialSeed.cs" />
-    <Compile Include="Migrations\201803231721083_InitialSeed.Designer.cs">
-      <DependentUpon>201803231721083_InitialSeed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803232150216_RevertedContributorIds.cs" />
-    <Compile Include="Migrations\201803232150216_RevertedContributorIds.Designer.cs">
-      <DependentUpon>201803232150216_RevertedContributorIds.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803232223081_TestingManyToMany.cs" />
-    <Compile Include="Migrations\201803232223081_TestingManyToMany.Designer.cs">
-      <DependentUpon>201803232223081_TestingManyToMany.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803232320141_ReferenceViewModelsRequirementsChange.cs" />
-    <Compile Include="Migrations\201803232320141_ReferenceViewModelsRequirementsChange.Designer.cs">
-      <DependentUpon>201803232320141_ReferenceViewModelsRequirementsChange.cs</DependentUpon>
+    <Compile Include="Migrations\201803250535404_FilePlaceholder.cs" />
+    <Compile Include="Migrations\201803250535404_FilePlaceholder.Designer.cs">
+      <DependentUpon>201803250535404_FilePlaceholder.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Asset.cs" />
@@ -164,8 +144,10 @@
     <Compile Include="Models\AssetSubtype.cs" />
     <Compile Include="Models\AssetSubtypeViewModel.cs" />
     <Compile Include="Models\AssetType.cs" />
+    <Compile Include="Models\AssetTypeSubtypePairingViewModel.cs" />
     <Compile Include="Models\AssetTypeViewModel.cs" />
     <Compile Include="Models\AssetViewModel.cs" />
+    <Compile Include="Models\AssetTypeSubtypePairing.cs" />
     <Compile Include="Models\Contributor.cs" />
     <Compile Include="Models\ContributorListViewModel.cs" />
     <Compile Include="Models\ContributorPopulatedViewModel.cs" />
@@ -179,26 +161,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803212028040_InitialCreate.resx">
-      <DependentUpon>201803212028040_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803250419518_Reinitialization.resx">
+      <DependentUpon>201803250419518_Reinitialization.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803222118082_InitialMigration.resx">
-      <DependentUpon>201803222118082_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803230417078_ProjectAndAssetCreatorsAndContributors.resx">
-      <DependentUpon>201803230417078_ProjectAndAssetCreatorsAndContributors.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803231721083_InitialSeed.resx">
-      <DependentUpon>201803231721083_InitialSeed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803232150216_RevertedContributorIds.resx">
-      <DependentUpon>201803232150216_RevertedContributorIds.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803232223081_TestingManyToMany.resx">
-      <DependentUpon>201803232223081_TestingManyToMany.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803232320141_ReferenceViewModelsRequirementsChange.resx">
-      <DependentUpon>201803232320141_ReferenceViewModelsRequirementsChange.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803250535404_FilePlaceholder.resx">
+      <DependentUpon>201803250535404_FilePlaceholder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

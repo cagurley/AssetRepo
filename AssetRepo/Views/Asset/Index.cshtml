@@ -19,24 +19,24 @@
             <tr>
                 <td>@Model.Assets[i].Title</td>
                 <td>
-                    @Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId })
-                    | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId })
+                    @Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId }, new { @class = "text-dark" })
                     @*| @Html.ActionLink("Food Preferences", "ManageFoodPreferences", new { id = Model.People[i].PersonId })*@
-                    | <a data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
+                    | <a class="text-dark" data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
                     <div class="modal fade" id="@("deleteAssetModal" + i)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 @using (Html.BeginForm("DeleteAsset", "Asset"))
                                 {
-                                    <input type="hidden" value="@Model.Assets[i].AssetId" name="AssetId" />
+                                    <input type="hidden" value="@Model.Assets[i].AssetId" name="AssetId">
                                     <div class="modal-header">
+                                        <h4 class="modal-title">Delete <span style="text-decoration: underline;">@Model.Assets[i].Title</span></h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
+                                            <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h4 class="modal-title">Delete @Model.Assets[i].Title</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete @Model.Assets[i].Title?
+                                        Are you sure you want to delete <span style="text-decoration: underline;">@Model.Assets[i].Title</span>?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-dark">Yes</button>
