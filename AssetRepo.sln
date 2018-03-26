@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{678DE0B4-5939-4A2A-BE66-AC44AD1BFC3E}"
 	ProjectSection(SolutionItems) = preProject
 		C#ProjectBrainstorm.md = C#ProjectBrainstorm.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
