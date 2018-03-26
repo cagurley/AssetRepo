@@ -1,7 +1,59 @@
-﻿
+﻿@model AssetRepo.Models.ProjectListViewModel
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Browse Our Projects</h2>
+<br>
+<div class="row">
+    <div class="card-wrapper col-sm-4">
+        <a href="/Project" class="text-dark">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-dark text-center align-middle">All Projects</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card-wrapper col-sm-4">
+        <a href="/Asset?projectId=2" class="text-dark">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-dark text-center">General Use</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="card-wrapper col-sm-4">
+        <a href="/Asset?projectId=1" class="text-dark">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-dark text-center">Miscellaneous</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+@*<br>*@
+<hr>
+<h2>See What's New</h2>
+<br>
+<div class="row">
+    @for (var i = 0; i < Model.Projects.Count; i++)
+    {
+        <div class="card-wrapper col-sm-4">
+            <a href="/Asset?projectId=@Model.Projects[i].ProjectId" class="text-dark">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-dark text-center">@Model.Projects[i].Title</h4>
+                        <br>
+                        <h5 class="card-subtitle mb-2 text-muted text-center">@Model.Projects[i].LastUpdateDateTime</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+@*<br>*@
+
 

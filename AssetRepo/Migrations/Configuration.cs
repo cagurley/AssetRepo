@@ -41,7 +41,7 @@ namespace AssetRepo.Migrations
 
             context.Contributors.AddOrUpdate(
                 c => c.ContributorId,
-                new Contributor { ContributorId = 1, Name = "SampleContributor" }
+                new Contributor { ContributorId = 1, Name = "CAGurley" }
             );
 
             context.ProjectCategories.AddOrUpdate(
@@ -86,12 +86,12 @@ namespace AssetRepo.Migrations
 
             context.SaveChanges();
 
-            context.Assets.AddOrUpdate(
-                a => a.AssetId,
-                new Asset { AssetId = 1, Title = "SampleTitle", ProjectId = 1, AssetTypeSubtypePairingId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Comment = "Sample comment", FilePlaceholder = "Pretend file" }
-            );
+            //context.Assets.AddOrUpdate(
+            //    a => a.AssetId,
+            //    new Asset { AssetId = 1, Title = "SampleTitle", ProjectId = 1, AssetTypeSubtypePairingId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Comment = "Sample comment", FilePlaceholder = "Pretend file" }
+            //);
 
-            context.SaveChanges();
+            //context.SaveChanges();
         }
     }
 }
