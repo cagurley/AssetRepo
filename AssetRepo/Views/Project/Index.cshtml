@@ -1,7 +1,15 @@
 ﻿@model AssetRepo.Models.ProjectListViewModel
 @{
     ViewBag.Title = "Projects";
-    bool? activeView = Model.Projects[0].IsActive;
+    bool? activeView;
+    if (Model.Projects.Count == 0)
+    {
+        activeView = false;
+    }
+    else
+    {
+        activeView = Model.Projects[0].IsActive;
+    }
     if (activeView == false)
     {
         ViewBag.Title = "Inactive Projects";
