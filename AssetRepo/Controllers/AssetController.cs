@@ -320,7 +320,7 @@ namespace AssetRepo.Controllers
                 var project = assetRepoContext.Projects.SingleOrDefault(p => p.ProjectId == assetViewModel.Project.ProjectId);
                 if (project != null)
                 {
-                    project.LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value;
+                    project.LastUpdaterId = assetViewModel.Creator.ContributorId.Value;
                     project.LastUpdateDateTime = DateTime.Now;
                 }
 
