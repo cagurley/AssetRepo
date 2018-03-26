@@ -110,7 +110,7 @@
     <Content Include="Views\Contributor\Index.cshtml" />
     <Content Include="Views\Project\ProjectDetail.cshtml" />
     <Content Include="Views\Project\AddEditProject.cshtml" />
-    <Content Include="Views\Project\EditNotAllowed.cshtml" />
+    <Content Include="Views\Home\EditNotAllowed.cshtml" />
     <Content Include="Views\Contributor\AddEditContributor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -149,6 +149,10 @@
     <Compile Include="Migrations\201803251928098_TypeSubtypeCategoryConstraints.Designer.cs">
       <DependentUpon>201803251928098_TypeSubtypeCategoryConstraints.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803261850403_ProjectIsActive.cs" />
+    <Compile Include="Migrations\201803261850403_ProjectIsActive.Designer.cs">
+      <DependentUpon>201803261850403_ProjectIsActive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\AssetListViewModel.cs" />
@@ -183,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803251928098_TypeSubtypeCategoryConstraints.resx">
       <DependentUpon>201803251928098_TypeSubtypeCategoryConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803261850403_ProjectIsActive.resx">
+      <DependentUpon>201803261850403_ProjectIsActive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

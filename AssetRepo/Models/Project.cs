@@ -18,6 +18,7 @@ namespace AssetRepo.Models
         public DateTime LastUpdateDateTime { get; set; }
         [Required, StringLength(2000)]
         public string Description { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ProjectCategory ProjectCategory { get; set; }
         public virtual ICollection<Asset> Assets { get; set; }

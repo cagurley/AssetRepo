@@ -10,35 +10,86 @@ namespace AssetRepo.Controllers
     public class ProjectController : Controller
     {
         // GET: Project
-        public ActionResult Index()
+        public ActionResult Index(bool? isActive)
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
-                var projectList = new ProjectListViewModel
-                {
-                    //Convert each Project to a ProjectViewModel
-                    Projects = assetRepoContext.Projects.Select(p => new ProjectViewModel
+                ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
                     {
-                        ProjectId = p.ProjectId,
-                        Title = p.Title,
-                        Category = new ProjectCategoryViewModel
-                        {
-                            ProjectCategoryId = p.ProjectCategoryId
-                        },
-                        Creator = new ContributorPopulatedViewModel
-                        {
-                            ContributorId = p.Creator.ContributorId
-                        },
-                        CreationDateTime = p.CreationDateTime,
-                        LastUpdater = new ContributorPopulatedViewModel
-                        {
-                            ContributorId = p.LastUpdaterId
-                        },
-                        LastUpdateDateTime = p.LastUpdateDateTime,
-                        Description = p.Description
-                    }).ToList()
-                };
+                        Value = c.ContributorId.ToString(),
+                        Text = c.Name
+                    })
+                    .ToList();
+            }
 
+            using (var assetRepoContext = new AssetRepoContext())
+            {
+                ProjectListViewModel projectList;
+                if (isActive == false)
+                {
+                    projectList = new ProjectListViewModel
+                    {
+                        //Convert each Project to a ProjectViewModel
+                        Projects = assetRepoContext.Projects
+                            .Select(p => new ProjectViewModel
+                            {
+                                ProjectId = p.ProjectId,
+                                Title = p.Title,
+                                Category = new ProjectCategoryViewModel
+                                {
+                                    ProjectCategoryId = p.ProjectCategoryId
+                                },
+                                Creator = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = p.Creator.ContributorId
+                                },
+                                CreationDateTime = p.CreationDateTime,
+                                LastUpdater = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = p.LastUpdaterId
+                                },
+                                LastUpdateDateTime = p.LastUpdateDateTime,
+                                Description = p.Description,
+                                IsActive = p.IsActive
+                            })
+                            .Where(p => p.IsActive == false)
+                            .ToList()
+                    };
+                }
+                else
+                {
+                    projectList = new ProjectListViewModel
+                    {
+                        //Convert each Project to a ProjectViewModel
+                        Projects = assetRepoContext.Projects
+                            .Select(p => new ProjectViewModel
+                            {
+                                ProjectId = p.ProjectId,
+                                Title = p.Title,
+                                Category = new ProjectCategoryViewModel
+                                {
+                                    ProjectCategoryId = p.ProjectCategoryId
+                                },
+                                Creator = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = p.Creator.ContributorId
+                                },
+                                CreationDateTime = p.CreationDateTime,
+                                LastUpdater = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = p.LastUpdaterId
+                                },
+                                LastUpdateDateTime = p.LastUpdateDateTime,
+                                Description = p.Description,
+                                IsActive = p.IsActive
+                            })
+                            .Where(p => p.IsActive == true)
+                            .ToList()
+                    };
+                }
+                
                 projectList.TotalProjects = projectList.Projects.Count;
 
                 return View(projectList);
@@ -73,7 +124,8 @@ namespace AssetRepo.Controllers
                             Name = project.LastUpdater.Name
                         },
                         LastUpdateDateTime = project.LastUpdateDateTime,
-                        Description = project.Description
+                        Description = project.Description,
+                        IsActive = project.IsActive
                     };
 
                     return View(projectViewModel);
@@ -97,11 +149,14 @@ namespace AssetRepo.Controllers
                     .Where(pc => pc.Value != "1" && pc.Value != "2")
                     .ToList();
 
-                ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
-                {
-                    Value = c.ContributorId.ToString(),
-                    Text = c.Name
-                }).ToList();
+                ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.ContributorId.ToString(),
+                        Text = c.Name
+                    })
+                    .ToList();
             }
 
             var projectViewModel = new ProjectViewModel();
@@ -126,11 +181,14 @@ namespace AssetRepo.Controllers
                     .Where(pc => pc.Value != "1" && pc.Value != "2")
                     .ToList();
 
-                    ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
+                    ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
                     {
                         Value = c.ContributorId.ToString(),
                         Text = c.Name
-                    }).ToList();
+                    })
+                    .ToList();
 
                     return View("AddEditProject", projectViewModel);
                 }
@@ -149,7 +207,8 @@ namespace AssetRepo.Controllers
                     LastUpdaterId = projectViewModel.Creator.ContributorId.Value,
                     // Automatically set to current system datetime
                     LastUpdateDateTime = DateTime.Now,
-                    Description = projectViewModel.Description
+                    Description = projectViewModel.Description,
+                    IsActive = true
                 };
 
                 assetRepoContext.Projects.Add(project);
@@ -165,8 +224,9 @@ namespace AssetRepo.Controllers
             {
                 if (id == 1 || id == 2)
                 {
-                    return View("EditNotAllowed");
+                    return RedirectToAction("EditNotAllowed", "Home");
                 }
+
                 ViewBag.ProjectCategories = assetRepoContext.ProjectCategories
                     .Select(pc => new SelectListItem
                     {
@@ -177,11 +237,14 @@ namespace AssetRepo.Controllers
                     .Where(pc => pc.Value != "1" && pc.Value != "2")
                     .ToList();
 
-                ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
-                {
-                    Value = c.ContributorId.ToString(),
-                    Text = c.Name
-                }).ToList();
+                ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.ContributorId.ToString(),
+                        Text = c.Name
+                    })
+                    .ToList();
 
                 var project = assetRepoContext.Projects.SingleOrDefault(p => p.ProjectId == id);
                 if (project != null)
@@ -207,7 +270,8 @@ namespace AssetRepo.Controllers
                             Name = project.LastUpdater.Name
                         },
                         LastUpdateDateTime = project.LastUpdateDateTime,
-                        Description = project.Description
+                        Description = project.Description,
+                        IsActive = project.IsActive
                     };
 
                     return View("AddEditProject", projectViewModel);
@@ -234,11 +298,14 @@ namespace AssetRepo.Controllers
                     .Where(pc => pc.Value != "1" && pc.Value != "2")
                     .ToList();
 
-                    ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
+                    ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
                     {
                         Value = c.ContributorId.ToString(),
                         Text = c.Name
-                    }).ToList();
+                    })
+                    .ToList();
 
                     return View("AddEditProject", projectViewModel);
                 }
@@ -257,6 +324,7 @@ namespace AssetRepo.Controllers
                     // Automatically set to current system datetime
                     project.LastUpdateDateTime = DateTime.Now;
                     project.Description = projectViewModel.Description;
+                    project.IsActive = projectViewModel.IsActive;
                     assetRepoContext.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -266,6 +334,60 @@ namespace AssetRepo.Controllers
             return new HttpNotFoundResult();
         }
 
-        // Projects are not intended to be deleted by a user, so this functionality has been omitted.
+        // Projects are not intended to be deleted by a user, so this functionality has been replaced with inactivation.
+
+        public ActionResult InactivateProject(ProjectViewModel projectViewModel)
+        {
+            using (var assetRepoContext = new AssetRepoContext())
+            {
+                
+                var project = assetRepoContext.Projects.SingleOrDefault(p => p.ProjectId == projectViewModel.ProjectId);
+
+                if (project != null)
+                {
+                    // Represents the protected 'SYSTEM' profile.
+                    project.LastUpdaterId = 1;
+                    project.LastUpdateDateTime = DateTime.Now;
+                    project.IsActive = false;
+                    var assets = assetRepoContext.Assets.Where(a => a.ProjectId == project.ProjectId).ToList();
+                    foreach (Asset asset in assets)
+                    {
+                        if (asset != null)
+                        {
+                            asset.ProjectId = 1;
+                            asset.LastUpdaterId = 1;
+                            asset.LastUpdateDateTime = DateTime.Now;
+                        }
+                    }
+                    assetRepoContext.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return new HttpNotFoundResult();
+        }
+
+        public ActionResult ReactivateProject(ProjectViewModel projectViewModel)
+        {
+            using (var assetRepoContext = new AssetRepoContext())
+            {
+
+                var project = assetRepoContext.Projects.SingleOrDefault(p => p.ProjectId == projectViewModel.ProjectId);
+
+                if (project != null)
+                {
+                    // Represents the protected 'SYSTEM' profile.
+                    project.LastUpdaterId = 1;
+                    project.LastUpdateDateTime = DateTime.Now;
+                    project.IsActive = true;
+                    assetRepoContext.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return new HttpNotFoundResult();
+        }
     }
 }

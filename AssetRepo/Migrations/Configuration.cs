@@ -41,7 +41,7 @@ namespace AssetRepo.Migrations
 
             context.Contributors.AddOrUpdate(
                 c => c.ContributorId,
-                new Contributor { ContributorId = 1, Name = "CAGurley" }
+                new Contributor { ContributorId = 1, Name = "SYSTEM" }
             );
 
             context.ProjectCategories.AddOrUpdate(
@@ -80,12 +80,13 @@ namespace AssetRepo.Migrations
 
             context.Projects.AddOrUpdate(
                 p => p.ProjectId,
-                new Project { ProjectId = 1, Title = "Miscellaneous", ProjectCategoryId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Description = "This is the project containing miscellaneous assets not assigned a clear use. Please ask the respective contributor for use of an asset from this project/category!" },
-                new Project { ProjectId = 2, Title = "General Use", ProjectCategoryId = 2, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Description = "This is the project containing assorted assets intended for broad public use. Assets in this project/category are free for appropriation so long as credit is properly attributed." }
+                new Project { ProjectId = 1, Title = "Miscellaneous", ProjectCategoryId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Description = "This is the project containing miscellaneous assets not assigned a clear use. Please ask the respective contributor for use of an asset from this project/category!", IsActive = true },
+                new Project { ProjectId = 2, Title = "General Use", ProjectCategoryId = 2, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Description = "This is the project containing assorted assets intended for broad public use. Assets in this project/category are free for appropriation so long as credit is properly attributed.", IsActive = true }
             );
 
             context.SaveChanges();
 
+            // No Assets are currently set to seed.
             //context.Assets.AddOrUpdate(
             //    a => a.AssetId,
             //    new Asset { AssetId = 1, Title = "SampleTitle", ProjectId = 1, AssetTypeSubtypePairingId = 1, CreatorId = 1, CreationDateTime = DateTime.Now, LastUpdaterId = 1, LastUpdateDateTime = DateTime.Now, Comment = "Sample comment", FilePlaceholder = "Pretend file" }

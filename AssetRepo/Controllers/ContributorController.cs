@@ -21,7 +21,7 @@ namespace AssetRepo.Controllers
                     {
                         ContributorId = c.ContributorId,
                         Name = c.Name
-                    }).ToList()
+                    }).Where(c => c.ContributorId != 1).ToList()
                 };
 
                 contributorList.TotalContributors = contributorList.Contributors.Count;
@@ -68,6 +68,11 @@ namespace AssetRepo.Controllers
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
+                if (id == 1)
+                {
+                    return RedirectToAction("EditNotAllowed", "Home");
+                }
+
                 var contributor = assetRepoContext.Contributors.SingleOrDefault(c => c.ContributorId == id);
                 if (contributor != null)
                 {

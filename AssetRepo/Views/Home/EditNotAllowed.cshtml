@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Edit Not Allowed";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr>
+<div class="row container">
+    <p>Editing the "Miscellaneous" or "General Use" projects or the "SYSTEM" contributor is not permitted. Click below to return to Projects or Contributors.</p>
+    <div class="col-sm-3">
+        @Html.ActionLink("Projects", "Index", null, new { @class = "btn btn-dark" })
+    </div>
+    <br><br>
+    <div class="col-sm-3">
+        @Html.ActionLink("Contributors", "Index", null, new { @class = "btn btn-dark" })
+    </div>
+</div>
+
