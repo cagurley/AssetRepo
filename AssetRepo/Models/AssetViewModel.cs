@@ -31,5 +31,7 @@ namespace AssetRepo.Models
 
         [Required(ErrorMessage = "File is required."), DisplayName("File")]
         public string FilePlaceholder { get; set; }
+
+        public int? ProjectRouteId { get; set; }
     }
 }

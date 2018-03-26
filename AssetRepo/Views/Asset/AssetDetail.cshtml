@@ -43,6 +43,6 @@
         <br>@Html.DisplayFor(m => m.FilePlaceholder)
     </div>
     <div class="col-sm-12">
-        @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-dark" })
+        @Html.ActionLink("Done", "Index", new { projectId = Model.ProjectRouteId }, new { @class = "btn btn-dark" })
     </div>
 </div>

@@ -1,5 +1,4 @@
 ﻿@model AssetRepo.Models.ProjectListViewModel
-
 @{
     ViewBag.Title = "Projects";
 }
@@ -21,6 +20,7 @@
                 <td>@Model.Projects[i].Title</td>
                 <td>
                     @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("View Assets", "Index", "Asset", new { projectId = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
                 </td>
             </tr>
         }
@@ -32,6 +32,7 @@
                 <td>
                     @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
                     | @Html.ActionLink("Edit", "ProjectEdit", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("View Assets", "Index", "Asset", new { projectId = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
                 </td>
             </tr>
         }

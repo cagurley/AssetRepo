@@ -10,70 +10,147 @@ namespace AssetRepo.Controllers
     public class AssetController : Controller
     {
         // GET: Asset
-        public ActionResult Index()
+        public ActionResult Index(int? projectId)
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
-                var assetList = new AssetListViewModel
+                AssetListViewModel assetList;
+                if (projectId == null)
                 {
-                    //Convert each Asset to an AssetViewModel
-                    Assets = assetRepoContext.Assets.Select(a => new AssetViewModel
+                    // Returns all assets
+                    assetList = new AssetListViewModel
                     {
-                        AssetId = a.AssetId,
-                        Project = new ProjectPopulatedViewModel
+                        //Convert each Asset to an AssetViewModel
+                        Assets = assetRepoContext.Assets.Select(a => new AssetViewModel
                         {
-                            ProjectId = a.ProjectId,
-                            Title = a.Project.Title,
-                            Category = new ProjectCategoryViewModel
+                            AssetId = a.AssetId,
+                            Project = new ProjectPopulatedViewModel
                             {
-                                ProjectCategoryId = a.Project.ProjectCategoryId,
-                                Name = a.Project.ProjectCategory.Name
+                                ProjectId = a.ProjectId,
+                                Title = a.Project.Title,
+                                Category = new ProjectCategoryViewModel
+                                {
+                                    ProjectCategoryId = a.Project.ProjectCategoryId,
+                                    Name = a.Project.ProjectCategory.Name
+                                },
+                                Creator = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = a.Project.CreatorId,
+                                    Name = a.Project.Creator.Name
+                                },
+                                CreationDateTime = a.Project.CreationDateTime,
+                                LastUpdater = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = a.Project.LastUpdaterId,
+                                    Name = a.Project.LastUpdater.Name
+                                },
+                                LastUpdateDateTime = a.Project.LastUpdateDateTime,
+                                Description = a.Project.Description
+                            },
+                            Title = a.Title,
+                            TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
+                            {
+                                AssetTypeSubtypePairingId = a.AssetTypeSubtypePairingId,
+                                Type = new AssetTypeViewModel
+                                {
+                                    AssetTypeId = a.AssetTypeSubtypePairing.AssetTypeId,
+                                    Name = a.AssetTypeSubtypePairing.AssetType.Name
+                                },
+                                Subtype = new AssetSubtypeViewModel
+                                {
+                                    AssetSubtypeId = a.AssetTypeSubtypePairing.AssetSubtypeId,
+                                    Name = a.AssetTypeSubtypePairing.AssetSubtype.Name
+                                }
                             },
                             Creator = new ContributorPopulatedViewModel
                             {
-                                ContributorId = a.Project.CreatorId,
-                                Name = a.Project.Creator.Name
+                                ContributorId = a.CreatorId,
+                                Name = a.Creator.Name
                             },
-                            CreationDateTime = a.Project.CreationDateTime,
+                            CreationDateTime = a.CreationDateTime,
                             LastUpdater = new ContributorPopulatedViewModel
                             {
-                                ContributorId = a.Project.LastUpdaterId,
-                                Name = a.Project.LastUpdater.Name
+                                ContributorId = a.LastUpdaterId,
+                                Name = a.LastUpdater.Name
                             },
-                            LastUpdateDateTime = a.Project.LastUpdateDateTime,
-                            Description = a.Project.Description
-                        },
-                        Title = a.Title,
-                        TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
-                        {
-                            AssetTypeSubtypePairingId = a.AssetTypeSubtypePairingId,
-                            Type = new AssetTypeViewModel
+                            LastUpdateDateTime = a.LastUpdateDateTime,
+                            Comment = a.Comment,
+                            FilePlaceholder = a.FilePlaceholder,
+                            ProjectRouteId = projectId
+                        }).ToList()
+                    };
+                }
+                else
+                {
+                    //Returns all assets for a given project
+                    assetList = new AssetListViewModel
+                    {
+                        //Convert each Asset to an AssetViewModel
+                        Assets = assetRepoContext.Assets
+                            .Select(a => new AssetViewModel
                             {
-                                AssetTypeId = a.AssetTypeSubtypePairing.AssetTypeId,
-                                Name = a.AssetTypeSubtypePairing.AssetType.Name
-                            },
-                            Subtype = new AssetSubtypeViewModel
-                            {
-                                AssetSubtypeId = a.AssetTypeSubtypePairing.AssetSubtypeId,
-                                Name = a.AssetTypeSubtypePairing.AssetSubtype.Name
-                            }
-                        },
-                        Creator = new ContributorPopulatedViewModel
-                        {
-                            ContributorId = a.CreatorId,
-                            Name = a.Creator.Name
-                        },
-                        CreationDateTime = a.CreationDateTime,
-                        LastUpdater = new ContributorPopulatedViewModel
-                        {
-                            ContributorId = a.LastUpdaterId,
-                            Name = a.LastUpdater.Name
-                        },
-                        LastUpdateDateTime = a.LastUpdateDateTime,
-                        Comment = a.Comment,
-                        FilePlaceholder = a.FilePlaceholder
-                    }).ToList()
-                };
+                                AssetId = a.AssetId,
+                                Project = new ProjectPopulatedViewModel
+                                {
+                                    ProjectId = a.ProjectId,
+                                    Title = a.Project.Title,
+                                    Category = new ProjectCategoryViewModel
+                                    {
+                                        ProjectCategoryId = a.Project.ProjectCategoryId,
+                                        Name = a.Project.ProjectCategory.Name
+                                    },
+                                    Creator = new ContributorPopulatedViewModel
+                                    {
+                                        ContributorId = a.Project.CreatorId,
+                                        Name = a.Project.Creator.Name
+                                    },
+                                    CreationDateTime = a.Project.CreationDateTime,
+                                    LastUpdater = new ContributorPopulatedViewModel
+                                    {
+                                        ContributorId = a.Project.LastUpdaterId,
+                                        Name = a.Project.LastUpdater.Name
+                                    },
+                                    LastUpdateDateTime = a.Project.LastUpdateDateTime,
+                                    Description = a.Project.Description
+                                },
+                                Title = a.Title,
+                                TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
+                                {
+                                    AssetTypeSubtypePairingId = a.AssetTypeSubtypePairingId,
+                                    Type = new AssetTypeViewModel
+                                    {
+                                        AssetTypeId = a.AssetTypeSubtypePairing.AssetTypeId,
+                                        Name = a.AssetTypeSubtypePairing.AssetType.Name
+                                    },
+                                    Subtype = new AssetSubtypeViewModel
+                                    {
+                                        AssetSubtypeId = a.AssetTypeSubtypePairing.AssetSubtypeId,
+                                        Name = a.AssetTypeSubtypePairing.AssetSubtype.Name
+                                    }
+                                },
+                                Creator = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = a.CreatorId,
+                                    Name = a.Creator.Name
+                                },
+                                CreationDateTime = a.CreationDateTime,
+                                LastUpdater = new ContributorPopulatedViewModel
+                                {
+                                    ContributorId = a.LastUpdaterId,
+                                    Name = a.LastUpdater.Name
+                                },
+                                LastUpdateDateTime = a.LastUpdateDateTime,
+                                Comment = a.Comment,
+                                FilePlaceholder = a.FilePlaceholder,
+                                ProjectRouteId = projectId
+                            })
+                            .Where(a => a.Project.ProjectId == projectId)
+                            .ToList()
+                    };
+                    
+                }
+
+                assetList.ProjectRouteId = projectId;
 
                 assetList.TotalAssets = assetList.Assets.Count;
 
@@ -81,7 +158,7 @@ namespace AssetRepo.Controllers
             }
         }
 
-        public ActionResult AssetDetail(int id)
+        public ActionResult AssetDetail(int id, int? projectId)
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
@@ -142,9 +219,11 @@ namespace AssetRepo.Controllers
                         },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
                         Comment = asset.Comment,
-                        FilePlaceholder = asset.FilePlaceholder
+                        FilePlaceholder = asset.FilePlaceholder,
+                        // Used for view filtering by project
+                        ProjectRouteId = projectId
                     };
-
+                    
                     return View(assetViewModel);
                 }
             }
@@ -152,16 +231,26 @@ namespace AssetRepo.Controllers
             return new HttpNotFoundResult();
         }
 
-        public ActionResult AssetAdd()
+        public ActionResult AssetAdd(int? projectId)
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
-                ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                if (projectId != null)
                 {
-                    Value = p.ProjectId.ToString(),
-                    Text = p.Title
-                }).ToList();
-
+                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                    {
+                        Value = p.ProjectId.ToString(),
+                        Text = p.Title
+                    }).Where(p => p.Value == projectId.ToString()).ToList();
+                }
+                else
+                {
+                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
+                    {
+                        Value = p.ProjectId.ToString(),
+                        Text = p.Title
+                    }).ToList();
+                }
                 ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                 {
                     Value = atsp.AssetTypeSubtypePairingId.ToString(),
@@ -175,7 +264,7 @@ namespace AssetRepo.Controllers
                 }).ToList();
             }
 
-            var assetViewModel = new AssetViewModel();
+            var assetViewModel = new AssetViewModel() { ProjectRouteId = projectId };
 
             return View("AddEditAsset", assetViewModel);
         }
@@ -227,14 +316,22 @@ namespace AssetRepo.Controllers
                     FilePlaceholder = assetViewModel.FilePlaceholder
                 };
 
+                // Updates last updated properties for respective project
+                var project = assetRepoContext.Projects.SingleOrDefault(p => p.ProjectId == assetViewModel.Project.ProjectId);
+                if (project != null)
+                {
+                    project.LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value;
+                    project.LastUpdateDateTime = DateTime.Now;
+                }
+
                 assetRepoContext.Assets.Add(asset);
                 assetRepoContext.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { projectId = assetViewModel.ProjectRouteId });
         }
 
-        public ActionResult AssetEdit(int id)
+        public ActionResult AssetEdit(int id, int? projectId)
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
@@ -313,7 +410,9 @@ namespace AssetRepo.Controllers
                         },
                         LastUpdateDateTime = asset.LastUpdateDateTime,
                         Comment = asset.Comment,
-                        FilePlaceholder = asset.FilePlaceholder
+                        FilePlaceholder = asset.FilePlaceholder,
+                        // Used for view filtering by project
+                        ProjectRouteId = projectId
                     };
 
                     return View("AddEditAsset", assetViewModel);
@@ -367,9 +466,18 @@ namespace AssetRepo.Controllers
                     asset.LastUpdateDateTime = DateTime.Now;
                     asset.Comment = assetViewModel.Comment;
                     asset.FilePlaceholder = assetViewModel.FilePlaceholder;
+
+                    // Updates last updated properties for respective project
+                    var project = assetRepoContext.Projects.SingleOrDefault(p => p.ProjectId == assetViewModel.Project.ProjectId);
+                    if (project != null)
+                    {
+                        project.LastUpdaterId = assetViewModel.LastUpdater.ContributorId.Value;
+                        project.LastUpdateDateTime = DateTime.Now;
+                    }
+
                     assetRepoContext.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { projectId = assetViewModel.ProjectRouteId });
                 }
             }
 
@@ -381,6 +489,7 @@ namespace AssetRepo.Controllers
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
+                var projectRouteId = assetViewModel.ProjectRouteId;
                 var asset = assetRepoContext.Assets.SingleOrDefault(a => a.AssetId == assetViewModel.AssetId);
 
                 if (asset != null)
@@ -388,7 +497,7 @@ namespace AssetRepo.Controllers
                     assetRepoContext.Assets.Remove(asset);
                     assetRepoContext.SaveChanges();
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", new { projectId = projectRouteId });
                 }
             }
 

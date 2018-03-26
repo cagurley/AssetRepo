@@ -18,7 +18,14 @@
             </div>
             <div class="form-group">
                 <label for="Project_ProjectId">Project</label>
-                @Html.DropDownListFor(m => m.Project.ProjectId, ViewBag.Projects as IEnumerable<SelectListItem>, "Select a project...", new { @class = "form-control" })
+                @if (Model.ProjectRouteId != null)
+                {
+                    @Html.DropDownListFor(m => m.Project.ProjectId, ViewBag.Projects as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                }
+                else
+                {
+                    @Html.DropDownListFor(m => m.Project.ProjectId, ViewBag.Projects as IEnumerable<SelectListItem>, "Select a project...", new { @class = "form-control" })
+                }
                 @Html.ValidationMessageFor(m => m.Project.ProjectId, null, new { @class = "text-danger" })
             </div>
             <div class="form-group">
@@ -38,7 +45,7 @@
                     @Html.ValidationMessageFor(m => m.Creator.ContributorId, null, new { @class = "text-danger" })
                 </div>
             }
-                @Html.HiddenFor(m => m.CreationDateTime)
+            @Html.HiddenFor(m => m.CreationDateTime)
             if (isEditMode)
             {
                 <div class="form-group">
@@ -63,8 +70,9 @@
                 @Html.TextAreaFor(m => m.FilePlaceholder, 5, 10, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.FilePlaceholder, null, new { @class = "text-danger" })
             </div>
+            @Html.HiddenFor(m => m.ProjectRouteId)
             <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
-            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })
+            @Html.ActionLink("Cancel", "Index", new { projectId = Model.ProjectRouteId }, new { @class = "btn btn-default text-dark" })
             @Html.ValidationSummary(null, new { @class = "alert alert-danger", style = "margin-top: 15px; padding: 10px 0;" });
         }
     </div>

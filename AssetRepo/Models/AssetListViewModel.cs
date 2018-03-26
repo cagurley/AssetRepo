@@ -9,5 +9,6 @@ namespace AssetRepo.Models
     {
         public List<AssetViewModel> Assets { get; set; }
         public int TotalAssets { get; set; }
+        public int? ProjectRouteId { get; set; }
     }
 }
