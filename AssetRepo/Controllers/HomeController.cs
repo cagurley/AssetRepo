@@ -14,9 +14,10 @@ namespace AssetRepo.Controllers
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
-                var lastUpdatedProjects = new ProjectListViewModel
+                var lastUpdatedActiveProjects = new ProjectListViewModel
                 {
                     Projects = assetRepoContext.Projects
+                    .Where(p => p.IsActive == true)
                     .OrderByDescending(p => p.LastUpdateDateTime)
                     .Take(3)
                     .Select(p => new ProjectViewModel
@@ -37,42 +38,19 @@ namespace AssetRepo.Controllers
                             ContributorId = p.LastUpdaterId
                         },
                         LastUpdateDateTime = p.LastUpdateDateTime,
-                        Description = p.Description
+                        Description = p.Description,
+                        IsActive = p.IsActive
                     })
                     .ToList()
                 };
 
-                return View(lastUpdatedProjects);
+                return View(lastUpdatedActiveProjects);
             } 
-                //foreach (Project project in lastUpdatedProjects)
-                //{
-                //    if (project != null)
-                //    {
-                //        var projectViewModel = new ProjectViewModel
-                //        {
-                //            ProjectId = project.ProjectId,
-                //            Title = project.Title,
-                //            Category = new ProjectCategoryViewModel
-                //            {
-                //                ProjectCategoryId = project.ProjectCategoryId,
-                //                Name = project.ProjectCategory.Name
-                //            },
-                //            Creator = new ContributorPopulatedViewModel
-                //            {
-                //                ContributorId = project.CreatorId,
-                //                Name = project.Creator.Name
-                //            },
-                //            CreationDateTime = project.CreationDateTime,
-                //            LastUpdater = new ContributorPopulatedViewModel
-                //            {
-                //                ContributorId = project.LastUpdaterId,
-                //                Name = project.LastUpdater.Name
-                //            },
-                //            LastUpdateDateTime = project.LastUpdateDateTime,
-                //            Description = project.Description
-                //        };
-                //    }
-                //}
+        }
+
+        public ActionResult EditNotAllowed()
+        {
+            return View();
         }
     }
 }

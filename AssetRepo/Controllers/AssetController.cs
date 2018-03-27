@@ -45,7 +45,8 @@ namespace AssetRepo.Controllers
                                     Name = a.Project.LastUpdater.Name
                                 },
                                 LastUpdateDateTime = a.Project.LastUpdateDateTime,
-                                Description = a.Project.Description
+                                Description = a.Project.Description,
+                                IsActive = a.Project.IsActive
                             },
                             Title = a.Title,
                             TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
@@ -111,7 +112,8 @@ namespace AssetRepo.Controllers
                                         Name = a.Project.LastUpdater.Name
                                     },
                                     LastUpdateDateTime = a.Project.LastUpdateDateTime,
-                                    Description = a.Project.Description
+                                    Description = a.Project.Description,
+                                    IsActive = a.Project.IsActive
                                 },
                                 Title = a.Title,
                                 TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
@@ -190,7 +192,8 @@ namespace AssetRepo.Controllers
                                 Name = asset.Project.LastUpdater.Name
                             },
                             LastUpdateDateTime = asset.Project.LastUpdateDateTime,
-                            Description = asset.Project.Description
+                            Description = asset.Project.Description,
+                            IsActive = asset.Project.IsActive
                         },
                         TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
@@ -237,19 +240,26 @@ namespace AssetRepo.Controllers
             {
                 if (projectId != null)
                 {
-                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
-                    {
-                        Value = p.ProjectId.ToString(),
-                        Text = p.Title
-                    }).Where(p => p.Value == projectId.ToString()).ToList();
+                    ViewBag.Projects = assetRepoContext.Projects
+                        .Where(p => p.IsActive == true)
+                        .Select(p => new SelectListItem
+                        {
+                            Value = p.ProjectId.ToString(),
+                            Text = p.Title
+                        })
+                        .Where(p => p.Value == projectId.ToString())
+                        .ToList();
                 }
                 else
                 {
-                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
-                    {
-                        Value = p.ProjectId.ToString(),
-                        Text = p.Title
-                    }).ToList();
+                    ViewBag.Projects = assetRepoContext.Projects
+                        .Where(p => p.IsActive == true)
+                        .Select(p => new SelectListItem
+                        {
+                            Value = p.ProjectId.ToString(),
+                            Text = p.Title
+                        })
+                        .ToList();
                 }
                 ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                 {
@@ -257,11 +267,14 @@ namespace AssetRepo.Controllers
                     Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                 }).ToList();
 
-                ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
-                {
-                    Value = c.ContributorId.ToString(),
-                    Text = c.Name
-                }).ToList();
+                ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.ContributorId.ToString(),
+                        Text = c.Name
+                    })
+                    .ToList();
             }
 
             var assetViewModel = new AssetViewModel() { ProjectRouteId = projectId };
@@ -276,11 +289,13 @@ namespace AssetRepo.Controllers
             {
                 using (var assetRepoContext = new AssetRepoContext())
                 {
-                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
-                    {
-                        Value = p.ProjectId.ToString(),
-                        Text = p.Title
-                    }).ToList();
+                    ViewBag.Projects = assetRepoContext.Projects
+                        .Where(p => p.IsActive == true)
+                        .Select(p => new SelectListItem
+                        {
+                            Value = p.ProjectId.ToString(),
+                            Text = p.Title
+                        }).ToList();
 
                     ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                     {
@@ -288,11 +303,14 @@ namespace AssetRepo.Controllers
                         Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                     }).ToList();
 
-                    ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
+                    ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
                     {
                         Value = c.ContributorId.ToString(),
                         Text = c.Name
-                    }).ToList();
+                    })
+                    .ToList();
 
                     return View("AddEditAsset", assetViewModel);
                 }
@@ -335,11 +353,14 @@ namespace AssetRepo.Controllers
         {
             using (var assetRepoContext = new AssetRepoContext())
             {
-                ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
-                {
-                    Value = p.ProjectId.ToString(),
-                    Text = p.Title
-                }).ToList();
+                ViewBag.Projects = assetRepoContext.Projects
+                    .Where(p => p.IsActive == true)
+                    .Select(p => new SelectListItem
+                    {
+                        Value = p.ProjectId.ToString(),
+                        Text = p.Title
+                    })
+                    .ToList();
 
                 ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                 {
@@ -347,11 +368,14 @@ namespace AssetRepo.Controllers
                     Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                 }).ToList();
 
-                ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
-                {
-                    Value = c.ContributorId.ToString(),
-                    Text = c.Name
-                }).ToList();
+                ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
+                    {
+                        Value = c.ContributorId.ToString(),
+                        Text = c.Name
+                    })
+                    .ToList();
 
                 var asset = assetRepoContext.Assets.SingleOrDefault(a => a.AssetId == id);
                 if (asset != null)
@@ -381,7 +405,8 @@ namespace AssetRepo.Controllers
                                 Name = asset.Project.LastUpdater.Name
                             },
                             LastUpdateDateTime = asset.Project.LastUpdateDateTime,
-                            Description = asset.Project.Description
+                            Description = asset.Project.Description,
+                            IsActive = asset.Project.IsActive
                         },
                         TypeSubtypePairing = new AssetTypeSubtypePairingViewModel
                         {
@@ -429,11 +454,14 @@ namespace AssetRepo.Controllers
             {
                 using (var assetRepoContext = new AssetRepoContext())
                 {
-                    ViewBag.Projects = assetRepoContext.Projects.Select(p => new SelectListItem
-                    {
-                        Value = p.ProjectId.ToString(),
-                        Text = p.Title
-                    }).ToList();
+                    ViewBag.Projects = assetRepoContext.Projects
+                        .Where(p => p.IsActive == true)
+                        .Select(p => new SelectListItem
+                        {
+                            Value = p.ProjectId.ToString(),
+                            Text = p.Title
+                        })
+                        .ToList();
 
                     ViewBag.AssetTypeSubtypePairings = assetRepoContext.AssetTypeSubtypePairings.Select(atsp => new SelectListItem
                     {
@@ -441,11 +469,14 @@ namespace AssetRepo.Controllers
                         Text = atsp.AssetType.Name + ": " + atsp.AssetSubtype.Name
                     }).ToList();
 
-                    ViewBag.Contributors = assetRepoContext.Contributors.Select(c => new SelectListItem
+                    ViewBag.Contributors = assetRepoContext.Contributors
+                    .Where(c => c.ContributorId != 1)
+                    .Select(c => new SelectListItem
                     {
                         Value = c.ContributorId.ToString(),
                         Text = c.Name
-                    }).ToList();
+                    })
+                    .ToList();
 
                     return View("AddEditAsset", assetViewModel);
                 }

@@ -1,6 +1,7 @@
 ﻿@model AssetRepo.Models.ProjectViewModel
 @{
     ViewBag.Title = "Project Detail";
+    bool? isActive = Model.IsActive;
 }
 
 <h2>@Model.Title</h2>
@@ -30,7 +31,70 @@
         @Html.LabelFor(m => m.Description, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Description)
     </div>
-    <div class="col-sm-12">
-        @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-dark" })
+    @Html.HiddenFor(m => m.IsActive)
+    <div class="col-sm-3">
+        @Html.ActionLink("Done", "Index", new { isActive = Model.IsActive }, new { @class = "btn btn-dark" })
+    </div>
+    <br><br>
+    @if (isActive == false)
+    {
+        <div class="col-sm-3">
+            <div class="btn btn-dark" data-toggle="modal" href="@("#isActiveModal")">Reactivate</div>
+        </div>
+    }
+    else if (isActive == true && Model.ProjectId != 1 && Model.ProjectId != 2)
+    {
+        <div class="col-sm-3">
+            <div class="btn btn-dark" data-toggle="modal" href="@("#isActiveModal")">Inactivate</div>
+        </div>
+    }
+    <div class="modal fade" id="@("isActiveModal")" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                @if (isActive == true && Model.ProjectId != 1 && Model.ProjectId != 2)
+                {
+                    using (Html.BeginForm("InactivateProject", "Project"))
+                    {
+                        <input type="hidden" value="@Model.ProjectId" name="ProjectId">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Inactivate <span style="text-decoration: underline;">@Model.Title</span></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to make <span style="text-decoration: underline;">@Model.Title</span> inactive?
+                            <br>This will also reassign all assets in this project to Miscellaneous.
+                            <br>A project can be reactivated, but all former assets will have to be reassigned manually.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark">Yes</button>
+                            <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Cancel</button>
+                        </div>
+                    }
+                }
+                else if (isActive == false)
+                {
+                    using (Html.BeginForm("ReactivateProject", "Project"))
+                    {
+                        <input type="hidden" value="@Model.ProjectId" name="ProjectId">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Reactivate <span style="text-decoration: underline;">@Model.Title</span></h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to reactivate <span style="text-decoration: underline;">@Model.Title</span> inactive?
+                            <br>The project will be reactivated, but all former assets will have to be reassigned manually.<br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-dark">Yes</button>
+                            <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Cancel</button>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
     </div>
 </div>
