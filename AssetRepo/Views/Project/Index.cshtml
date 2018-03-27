@@ -21,73 +21,85 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (activeView == false)
-        {
-            for (var i = 0; i < Model.Projects.Count; i++)
-            {
-                // This loop renders the all inactive Blind Collab and Public Project projects, which can be viewed or reactivated after redirection to the detail view.
-                <tr>
-                    <td>@Model.Projects[i].Title</td>
-                    <td>
-                        @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                        | @Html.ActionLink("Reactivate", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            for (var i = 0; i < 2; i++)
-            {
-                // This loop renders the Miscellaneous and General Use projects, which should never be edited.
-                <tr>
-                    <td>@Model.Projects[i].Title</td>
-                    <td>
-                        @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                        | @Html.ActionLink("View Assets", "Index", "Asset", new { projectId = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                    </td>
-                </tr>
-            }
-            for (var i = 2; i < Model.Projects.Count; i++)
-            {
-                // This loop renders the remaining active Blind Collab and Public Project projects, which can be edited.
-                <tr>
-                    <td>@Model.Projects[i].Title</td>
-                    <td>
-                        @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                        | @Html.ActionLink("Edit", "ProjectEdit", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                        | @Html.ActionLink("View Assets", "Index", "Asset", new { projectId = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+<br>
+<div class="row">
+    <h6 class="col-12 col-sm-4 main-label text-center">Title</h6>
+    <h6 class="col-12 col-sm-4 col-md-3 col-lg-4 field-label text-center">Category</h6>
+    <h6 class="col-12 col-sm-4 col-md-5 col-lg-4 action-label text-center">Actions</h6>
+</div>
+<hr>
+@if (activeView == false)
+{
+    for (var i = 0; i < Model.Projects.Count; i++)
+    {
+        // This loop renders the all inactive Blind Collab and Public Project projects, which can be viewed or reactivated after redirection to the detail view.
+        <div class="card">
+            <div class="row card-body">
+                <div class="col-12 col-sm-4 text-center card-text" style="font-weight: 500;">
+                    @Model.Projects[i].Title
+                </div>
+                <div class="col-12 col-sm-4 col-md-3 col-lg-4 text-center card-text">@Model.Projects[i].Category.Name</div>
+                <div class="col-12 col-sm-4 col-md-5 col-lg-4 text-center card-link" style="font-style: italic;">
+                    @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("Reactivate", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    for (var i = 0; i < 2; i++)
+    {
+        // This loop renders the Miscellaneous and General Use projects, which should never be edited.
+        <div class="card">
+            <div class="row card-body">
+                <div class="col-12 col-sm-4 text-center card-text" style="font-weight: 500;">
+                    @Model.Projects[i].Title
+                </div>
+                <div class="col-12 col-sm-4 col-md-3 col-lg-4 text-center card-text">@Model.Projects[i].Category.Name</div>
+                <div class="col-12 col-sm-4 col-md-5 col-lg-4 text-center card-link" style="font-style: italic;">
+                    @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("View Assets", "Index", "Asset", new { projectId = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                </div>
+            </div>
+        </div>
+    }
+    for (var i = 2; i < Model.Projects.Count; i++)
+    {
+        // This loop renders the remaining active Blind Collab and Public Project projects, which can be edited.
+        <div class="card">
+            <div class="row card-body">
+                <div class="col-12 col-sm-4 text-center card-text" style="font-weight: 500;">
+                    @Model.Projects[i].Title
+                </div>
+                <div class="col-12 col-sm-4 col-md-3 col-lg-4 text-center card-text">@Model.Projects[i].Category.Name</div>
+                <div class="col-12 col-sm-4 col-md-5 col-lg-4 text-center card-link" style="font-style: italic;">
+                    @Html.ActionLink("Detail", "ProjectDetail", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("Edit", "ProjectEdit", new { id = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                    | @Html.ActionLink("View Assets", "Index", "Asset", new { projectId = Model.Projects[i].ProjectId }, new { @class = "text-dark" })
+                </div>
+            </div>
+        </div>
+    }
+}
+<br>
 <div class="row">
     <div class="col-sm-12 form-group">
         <label>Total Projects:</label> @Model.TotalProjects
     </div>
-    <div class="col-sm-3">
+    <div class="col-12 col-sm-3 form-group">
         @Html.ActionLink("Add Project", "ProjectAdd", null, new { @class = "btn btn-dark" })
     </div>
     @if (activeView == false)
     {
-        <div class="col-sm-3">
+        <div class="col-12 col-sm-3 form-group">
             @Html.ActionLink("View Active Projects", "Index", new { isActive = true }, new { @class = "btn btn-dark" })
         </div>
     }
     else
     {
-        <div class="col-sm-3">
+        <div class="col-12 col-sm-3 form-group">
             @Html.ActionLink("View Inactive Projects", "Index", new { isActive = false }, new { @class = "btn btn-dark" })
         </div>
     }

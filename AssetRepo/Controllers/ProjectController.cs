@@ -39,7 +39,8 @@ namespace AssetRepo.Controllers
                                 Title = p.Title,
                                 Category = new ProjectCategoryViewModel
                                 {
-                                    ProjectCategoryId = p.ProjectCategoryId
+                                    ProjectCategoryId = p.ProjectCategoryId,
+                                    Name = p.ProjectCategory.Name
                                 },
                                 Creator = new ContributorPopulatedViewModel
                                 {
@@ -70,7 +71,8 @@ namespace AssetRepo.Controllers
                                 Title = p.Title,
                                 Category = new ProjectCategoryViewModel
                                 {
-                                    ProjectCategoryId = p.ProjectCategoryId
+                                    ProjectCategoryId = p.ProjectCategoryId,
+                                    Name = p.ProjectCategory.Name
                                 },
                                 Creator = new ContributorPopulatedViewModel
                                 {

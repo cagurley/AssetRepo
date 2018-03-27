@@ -4,30 +4,33 @@
 }
 
 <h2>Contributors</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (var i = 0; i < Model.Contributors.Count; i++)
-        {
-            <tr>
-                <td>@Model.Contributors[i].Name</td>
-                <td>
-                    @Html.ActionLink("Edit", "ContributorEdit", new { id = Model.Contributors[i].ContributorId }, new { @class = "text-dark" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<div class="col-sm-12 form-group">
-    <label>Total Assets:</label> @Model.TotalContributors
+<br>
+<div class="row">
+    <h6 class="col-12 col-sm-6 col-md-4 col-lg-3 main-label text-center">Name</h6>
+    <div class="d-none d-md-block col-md-4 col-lg-6"></div>
+    <h6 class="col-12 col-sm-6 col-md-4 col-lg-3 action-label text-center">Actions</h6>
 </div>
-<div class="col-sm-12">
-    @Html.ActionLink("Add Contributor", "ContributorAdd", null, new { @class = "btn btn-dark" })
+<hr>
+@for (var i = 0; i < Model.Contributors.Count; i++)
+{
+    <div class="card">
+            <div class="row card-body">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center card-text" style="font-weight: 500;">
+                    @Model.Contributors[i].Name
+                </div>
+                <div class="d-none d-md-block col-md-4 col-lg-6"></div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-center card-link" style="font-style: italic;">
+                    @Html.ActionLink("Edit", "ContributorEdit", new { id = Model.Contributors[i].ContributorId }, new { @class = "text-dark card-link" })
+                </div>
+            </div>
+    </div>
+}
+<br>
+<div class="row">
+    <div class="col-sm-12 form-group">
+        <label>Total Contributors:</label> @Model.TotalContributors
+    </div>
+    <div class="col-12 col-sm-3 form-group">
+        @Html.ActionLink("Add Contributor", "ContributorAdd", null, new { @class = "btn btn-dark" })
+    </div>
 </div>

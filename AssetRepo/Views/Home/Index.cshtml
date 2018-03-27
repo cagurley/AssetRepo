@@ -8,27 +8,27 @@
 <div class="row card-row-top">
     <div class="card-wrapper col-md-4">
         <a href="/Project" class="text-dark">
-            <div class="card top-row">
+            <div class="card card-front top-row">
                 <div class="card-body">
-                    <h3 class="card-title text-dark text-center top-row-h">All Projects</h3>
+                    <h4 class="card-title text-dark text-center top-row-h">All Projects</h4>
                 </div>
             </div>
         </a>
     </div>
     <div class="card-wrapper col-md-4">
         <a href="/Asset?projectId=2" class="text-dark">
-            <div class="card top-row">
+            <div class="card card-front top-row">
                 <div class="card-body">
-                    <h3 class="card-title text-dark text-center top-row-h">General Use</h3>
+                    <h4 class="card-title text-dark text-center top-row-h">General Use</h4>
                 </div>
             </div>
         </a>
     </div>
     <div class="card-wrapper col-md-4">
         <a href="/Asset?projectId=1" class="text-dark">
-            <div class="card top-row">
+            <div class="card card-front top-row">
                 <div class="card-body">
-                    <h3 class="card-title text-dark text-center top-row-h">Miscellaneous</h3>
+                    <h4 class="card-title text-dark text-center top-row-h">Miscellaneous</h4>
                 </div>
             </div>
         </a>
@@ -42,7 +42,7 @@
     {
         <div class="card-wrapper col-md-4">
             <a href="/Asset?projectId=@Model.Projects[i].ProjectId" class="text-dark">
-                <div class="card bottom-row">
+                <div class="card card-front bottom-row">
                     <div class="card-body">
                         <h4 class="card-title text-dark text-center bottom-row-h">@Model.Projects[i].Title</h4>
                         <h6 class="card-subtitle mb-2 text-muted text-center">@Model.Projects[i].LastUpdateDateTime</h6>
