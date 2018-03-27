@@ -6,43 +6,50 @@
 <h2>@Model.Title</h2>
 <hr>
 <div class="row">
-    <div class="col-sm-12 form-group">
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.Project, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Project.Title)
     </div>
-    <div class="col-sm-6 form-group">
-        @Html.LabelFor(m => m.TypeSubtypePairing.Type, new { @class = "h5" })
-        <br>@Html.DisplayFor(m => m.TypeSubtypePairing.Type.Name)
-    </div>
-    <div class="col-sm-6 form-group">
-        @Html.LabelFor(m => m.TypeSubtypePairing.Subtype, new { @class = "h5" })
-        <br>@Html.DisplayFor(m => m.TypeSubtypePairing.Subtype.Name)
-    </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.Creator, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Creator.Name)
     </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group">
+        @Html.LabelFor(m => m.TypeSubtypePairing.Type, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.TypeSubtypePairing.Type.Name)
+    </div>
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.CreationDateTime, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.CreationDateTime)
     </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group">
+        @Html.LabelFor(m => m.TypeSubtypePairing.Subtype, new { @class = "h5" })
+        <br>@Html.DisplayFor(m => m.TypeSubtypePairing.Subtype.Name)
+    </div>
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.LastUpdater, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.LastUpdater.Name)
     </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group"></div>
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.LastUpdateDateTime, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.LastUpdateDateTime)
     </div>
-    <div class="col-sm-6 form-group">
+</div>
+<div class="row">
+    <div class="col-12 form-group">
         @Html.LabelFor(m => m.Comment, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Comment)
     </div>
-    <div class="col-sm-12 form-group">
+</div>
+<div class="row">
+    <div class="col-12 form-group">
         @Html.LabelFor(m => m.FilePlaceholder, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.FilePlaceholder)
     </div>
-    <div class="col-sm-12">
+</div>
+<div class="row">
+    <div class="col-12 col-sm-3 form-group">
         @Html.ActionLink("Done", "Index", new { projectId = Model.ProjectRouteId }, new { @class = "btn btn-dark" })
     </div>
 </div>

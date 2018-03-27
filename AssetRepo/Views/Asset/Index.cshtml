@@ -27,39 +27,41 @@
             <div class="col-12 col-sm-3 col-md-4 text-center card-text" style="font-weight: 500;">
                 @Model.Assets[i].Title
             </div>
-            <div class="col-12 col-sm-5 col-md-4 text-center card-text">@Model.Assets[i].Project.Title
-            | @Model.Assets[i].TypeSubtypePairing.Type.Name: @Model.Assets[i].TypeSubtypePairing.Subtype.Name</div>
-            <div class="col-12 col-sm-4 text-center card-link" style="font-style: italic;">
-                @Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId, projectId = Model.ProjectRouteId }, new { @class = "text-dark" })
-                | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId, projectId = Model.ProjectRouteId }, new { @class = "text-dark" })
-                | <a class="text-dark" data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
-                <div class="modal fade" id="@("deleteAssetModal" + i)" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            @using (Html.BeginForm("DeleteAsset", "Asset"))
-                            {
-                                <input type="hidden" value="@Model.Assets[i].AssetId" name="AssetId">
-                                <input type="hidden" value="@Model.Assets[i].ProjectRouteId" name="ProjectRouteId">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Delete <span style="text-decoration: underline;">@Model.Assets[i].Title</span></h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure you want to delete <span style="text-decoration: underline;">@Model.Assets[i].Title</span>?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-dark">Yes</button>
-                                    <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Cancel</button>
-                                </div>
-                            }
-                        </div>
+            <div class="col-12 col-sm-5 col-md-4 text-center card-text">
+                @Model.Assets[i].Project.Title
+            | @Model.Assets[i].TypeSubtypePairing.Type.Name: @Model.Assets[i].TypeSubtypePairing.Subtype.Name
+        </div>
+        <div class="col-12 col-sm-4 text-center card-link" style="font-style: italic;">
+            @Html.ActionLink("Detail", "AssetDetail", new { id = Model.Assets[i].AssetId, projectId = Model.ProjectRouteId }, new { @class = "text-dark" })
+            | @Html.ActionLink("Edit", "AssetEdit", new { id = Model.Assets[i].AssetId, projectId = Model.ProjectRouteId }, new { @class = "text-dark" })
+            | <a class="text-dark" data-toggle="modal" href="@("#deleteAssetModal" + i)">Delete</a>
+            <div class="modal fade" id="@("deleteAssetModal" + i)" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        @using (Html.BeginForm("DeleteAsset", "Asset"))
+                        {
+                            <input type="hidden" value="@Model.Assets[i].AssetId" name="AssetId">
+                            <input type="hidden" value="@Model.Assets[i].ProjectRouteId" name="ProjectRouteId">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete <span style="text-decoration: underline;">@Model.Assets[i].Title</span></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete <span style="text-decoration: underline;">@Model.Assets[i].Title</span>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-dark">Yes</button>
+                                <button type="button" class="btn btn-default text-dark" data-dismiss="modal">Cancel</button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 }
 <br>
 <div class="row">
@@ -77,4 +79,9 @@
     <div class="col-sm-12 col-sm-3 form-group">
         @Html.ActionLink("Add Asset", "AssetAdd", new { projectId = Model.ProjectRouteId }, new { @class = "btn btn-dark" })
     </div>
+</div>
+<br>
+<div class="alert alert-dark" role="alert">
+    <h3>New to AssetRepo?</h3>
+    <h5 style="font-weight: 400;">Add yourself as a contributor first; then come back and add assets to a project!</h5>
 </div>

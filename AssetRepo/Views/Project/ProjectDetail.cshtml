@@ -7,44 +7,50 @@
 <h2>@Model.Title</h2>
 <hr>
 <div class="row">
-    <div class="col-sm-12 form-group">
+    <div class="col-12 form-group">
         @Html.LabelFor(m => m.Category, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Category.Name)
     </div>
-    <div class="col-sm-6 form-group">
+</div>
+<div class="row">
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.Creator, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Creator.Name)
     </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.CreationDateTime, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.CreationDateTime)
     </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.LastUpdater, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.LastUpdater.Name)
     </div>
-    <div class="col-sm-6 form-group">
+    <div class="col-12 col-sm-6 form-group">
         @Html.LabelFor(m => m.LastUpdateDateTime, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.LastUpdateDateTime)
     </div>
-    <div class="col-sm-12 form-group">
+</div>
+<div class="row">
+    <div class="col-12 form-group">
         @Html.LabelFor(m => m.Description, new { @class = "h5" })
         <br>@Html.DisplayFor(m => m.Description)
     </div>
+</div>
+<div class="row">
     @Html.HiddenFor(m => m.IsActive)
-    <div class="col-sm-3">
+    <div class="col-12 col-sm-3 form-group">
         @Html.ActionLink("Done", "Index", new { isActive = Model.IsActive }, new { @class = "btn btn-dark" })
     </div>
-    <br><br>
+    <div class="d-none d-sm-block col-sm-3"></div>
     @if (isActive == false)
     {
-        <div class="col-sm-3">
+        <div class="col-12 col-sm-3 form-group">
             <div class="btn btn-dark" data-toggle="modal" href="@("#isActiveModal")">Reactivate</div>
         </div>
     }
     else if (isActive == true && Model.ProjectId != 1 && Model.ProjectId != 2)
     {
-        <div class="col-sm-3">
+        <div class="col-12 col-sm-3 form-group">
             <div class="btn btn-dark" data-toggle="modal" href="@("#isActiveModal")">Inactivate</div>
         </div>
     }

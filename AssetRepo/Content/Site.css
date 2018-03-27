@@ -33,7 +33,7 @@ h2 {
     margin-bottom: 1rem;
 }
 
-.card {
+.card, .detail-view {
     width: 100%;
 }
 

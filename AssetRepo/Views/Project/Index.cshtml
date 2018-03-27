@@ -91,6 +91,7 @@ else
     <div class="col-12 col-sm-3 form-group">
         @Html.ActionLink("Add Project", "ProjectAdd", null, new { @class = "btn btn-dark" })
     </div>
+    <div class="d-none d-sm-block col-sm-3 col-md-4 col-lg-5 col-xl-6"></div>
     @if (activeView == false)
     {
         <div class="col-12 col-sm-3 form-group">
@@ -103,4 +104,9 @@ else
             @Html.ActionLink("View Inactive Projects", "Index", new { isActive = false }, new { @class = "btn btn-dark" })
         </div>
     }
+</div>
+<br>
+<div class="alert alert-dark" role="alert">
+    <h3>New to AssetRepo?</h3>
+    <h5 style="font-weight: 400;">Add yourself as a contributor first; then come back and create your own project!</h5>
 </div>
