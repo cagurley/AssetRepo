@@ -5,30 +5,30 @@
 
 <h2>Browse Our Projects</h2>
 <br>
-<div class="row">
-    <div class="card-wrapper col-sm-4">
+<div class="row card-row-top">
+    <div class="card-wrapper col-md-4">
         <a href="/Project" class="text-dark">
-            <div class="card">
+            <div class="card top-row">
                 <div class="card-body">
-                    <h4 class="card-title text-dark text-center align-middle">All Projects</h4>
+                    <h3 class="card-title text-dark text-center top-row-h">All Projects</h3>
                 </div>
             </div>
         </a>
     </div>
-    <div class="card-wrapper col-sm-4">
+    <div class="card-wrapper col-md-4">
         <a href="/Asset?projectId=2" class="text-dark">
-            <div class="card">
+            <div class="card top-row">
                 <div class="card-body">
-                    <h4 class="card-title text-dark text-center">General Use</h4>
+                    <h3 class="card-title text-dark text-center top-row-h">General Use</h3>
                 </div>
             </div>
         </a>
     </div>
-    <div class="card-wrapper col-sm-4">
+    <div class="card-wrapper col-md-4">
         <a href="/Asset?projectId=1" class="text-dark">
-            <div class="card">
+            <div class="card top-row">
                 <div class="card-body">
-                    <h4 class="card-title text-dark text-center">Miscellaneous</h4>
+                    <h3 class="card-title text-dark text-center top-row-h">Miscellaneous</h3>
                 </div>
             </div>
         </a>
@@ -37,16 +37,15 @@
 <hr>
 <h2>See What's New</h2>
 <br>
-<div class="row">
+<div class="row card-row-bottom">
     @for (var i = 0; i < Model.Projects.Count; i++)
     {
-        <div class="card-wrapper col-sm-4">
+        <div class="card-wrapper col-md-4">
             <a href="/Asset?projectId=@Model.Projects[i].ProjectId" class="text-dark">
-                <div class="card">
+                <div class="card bottom-row">
                     <div class="card-body">
-                        <h4 class="card-title text-dark text-center">@Model.Projects[i].Title</h4>
-                        <br>
-                        <h5 class="card-subtitle mb-2 text-muted text-center">@Model.Projects[i].LastUpdateDateTime</h5>
+                        <h4 class="card-title text-dark text-center bottom-row-h">@Model.Projects[i].Title</h4>
+                        <h6 class="card-subtitle mb-2 text-muted text-center">@Model.Projects[i].LastUpdateDateTime</h6>
                     </div>
                 </div>
             </a>

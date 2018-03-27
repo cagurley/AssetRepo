@@ -1,4 +1,8 @@
-﻿nav {
+﻿html, body {
+    min-height: 100%;
+}
+
+nav {
     margin-bottom: 20px;
 }
 
@@ -17,11 +21,39 @@ h2 {
     margin-top: 1.5rem;
 }
 
+.card-row-top {
+    height: 498px;
+}
+
 .card-wrapper {
     margin-bottom: 1rem;
 }
 
 .card {
     width: 100%;
-    min-height: 150px;
+    height: 150px;
+}
+
+.card-body {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.top-row-h {
+    margin-top: 35px;
+}
+
+.bottom-row-h {
+    margin-top: 19px;
+    padding-bottom: 11px;
+}
+
+h6 {
+    font-size: 1.1rem;
+}
+
+@media all and (min-width: 768px) {
+    .card-row-top, .card-row-bottom {
+        height: 166px;
+    }
 }
