@@ -6,7 +6,7 @@ This project was conceived as a foundation for a website designed for artists an
 
 ## *Viewing Project*
 
-To run the web application, clone or download the repo and run in your particular version of Visual Studio. **Make sure to run `Update-Database` from the NuGet console before running.** Navigation largely follows conventions and should be intuitive where it doesn't. Start at the root and play around!
+To run the web application, clone or download the repo and run in your particular version of Visual Studio. **Make sure to build the project first, then open the NuGet console and run `Update-Database` prior to starting the application.** Navigation largely follows conventions and should be intuitive where it doesn't. Start at the root and play around!
 
 ## *Notes on Functionality*
 
