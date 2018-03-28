@@ -53,6 +53,7 @@
                 @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger" })
             </div>
+            @Html.HiddenFor(m => m.IsActive)
             <button type="submit" class="btn btn-dark">@(isEditMode ? "Save" : "Add")</button>
             @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default text-dark" })
             @Html.ValidationSummary(null, new { @class = "alert alert-danger", style = "margin-top: 15px; padding: 10px 0;" });

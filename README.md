@@ -6,7 +6,7 @@ This project was conceived as a foundation for a website designed for artists an
 
 ## *Viewing Project*
 
-To run the web application, clone or download the repo and open the solution in your particular version of Visual Studio. **Make sure to build the project first, then open the NuGet console and run `Update-Database` prior to starting the application.** Start at the root, and, before adding an asset, **add at least one contributor** (else there will be none to select on the add page and the entry will not validate).
+To run the web application, clone or download the repo and open the solution in your particular version of Visual Studio. **Make sure to build the project first, then open the NuGet console and run `Update-Database` prior to starting the application.** Start at the root, and, before adding an asset or a project, **add at least one contributor** (else there will be none to select on the add page and the entry will not validate).
 
 ## *Notes on Functionality*
 
